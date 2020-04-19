@@ -9,6 +9,7 @@ interface BillboardConfig {
   address: string;
   vol?: string;
   topics?: string;
+  logoPath?: string | null;
 }
 
 interface FontItemConfig {
@@ -30,13 +31,18 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   CANVAS_WIDTH = 750;
   CANVAS_HEIGHT = 1240;
   LOGO_SIZE = 50;
+
+  commonStyle = {
+    marginLeft: 30,
+    marginRight: 30,
+    topicMarginTop: 440,
+    topicLineheight: 50,
+  };
   
   @Input()
   set info(val) {
-    console.log('传入数据为', val);
-
     this._data = val;
-    if (this.context) {
+    if (this.context && val) {
       this.renderBillboard(val);
     }
   };
@@ -52,7 +58,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.context = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
-    this.renderBillboard(this._data);
+    if (this._data) {
+      this.renderBillboard(this._data);
+    }
   }
 
   renderBillboard(val) {
@@ -63,7 +71,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       address,
       vol,
       topics,
-      logo = 'assets/github.svg',
+      logoPath,
     } = val;
 
     const commonConfig: FontItemConfig = {
@@ -74,17 +82,14 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       textBaseline: 'middle',
     };
 
-    const commonStyle = {
-      marginLeft: 30,
-      marginRight: 30,
-      topicMarginTop: 440,
-      topicLineheight: 50,
-    };
+    const commonStyle = this.commonStyle;
 
     this.clearCanvas(this.context);
 
+    const realLogo = logoPath || 'assets/github.svg';
+
     // 
-    this.drawLogo(logo || 'assets/github.svg', this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight);
+    this.drawLogo(realLogo, this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight);
 
     this.drawTextItem(title, commonStyle.marginLeft, 230, {
       ...commonConfig,
@@ -144,22 +149,22 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   drawLogo(file, x: number, y: number) {
     let img = new Image();
-      img.crossOrigin = 'Anonymous';
+    img.crossOrigin = 'Anonymous';
       
-      img.onload = () => {
-        this.context.drawImage(
-          img,
-          x,
-          y,
-          this.LOGO_SIZE,
-          this.LOGO_SIZE,
-        )
-      };
-      img.onerror = (err) => {
-         console.error(err);
-      };
-    
-      img.src = file;
+    img.onload = () => {
+      this.context.drawImage(
+        img,
+        x,
+        y,
+        this.LOGO_SIZE,
+        this.LOGO_SIZE,
+      )
+    };
+    img.onerror = (err) => {
+        console.error(err);
+    };
+  
+    img.src = file;
   }
 
   clearCanvas(ctx: CanvasRenderingContext2D) {
