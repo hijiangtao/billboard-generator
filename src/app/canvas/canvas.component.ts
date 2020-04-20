@@ -9,6 +9,8 @@ interface BillboardConfig {
   address: string;
   vol?: string;
   topics?: string;
+  description?: string;
+  bgColor: string;
   logoPath?: string | null;
 }
 
@@ -70,7 +72,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       time,
       address,
       vol,
+      bgColor,
       topics,
+      description,
       logoPath,
     } = val;
 
@@ -84,7 +88,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     const commonStyle = this.commonStyle;
 
-    this.clearCanvas(this.context);
+    this.clearCanvas(this.context, bgColor);
 
     const realLogo = logoPath || 'assets/github.svg';
 
@@ -113,6 +117,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
           size: commonStyle.topicLineheight / 2
         });
       });
+    }
+
+    if (description) {
+      this.wrapText(this.context, description, commonStyle.marginLeft, topics.split('\n').length * commonStyle.topicLineheight + commonStyle.topicMarginTop + 60, this.CANVAS_WIDTH - commonStyle.marginLeft - commonStyle.marginRight, 40);
     }
 
     this.drawTextItem(time, commonStyle.marginLeft, this.CANVAS_HEIGHT - 80, {
@@ -167,9 +175,8 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     img.src = file;
   }
 
-  clearCanvas(ctx: CanvasRenderingContext2D) {
-    ctx.fillStyle = "#FF4C00";
-    // ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+  clearCanvas(ctx: CanvasRenderingContext2D, bgColor: string) {
+    ctx.fillStyle = bgColor || "#FF4C00";
     ctx.beginPath();
     ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);  
     ctx.closePath();  
@@ -179,12 +186,35 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     const canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
-    var ctx = canvas.getContext("2d");
+    let ctx = canvas.getContext("2d");
 
     ctx.drawImage(img, 0, 0);
 
     const dataURL = canvas.toDataURL("image/png");
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  }
+
+  wrapText(context: CanvasRenderingContext2D, text, x, y, maxWidth, lineHeight) {
+    let words = text.split('');
+    let line = '';
+
+    context.save();
+    context.font = `normal 20px sans-serif`;
+    for(let n = 0; n < words.length; n++) {
+      let testLine = line + words[n];
+      let metrics = context.measureText(testLine);
+      let testWidth = metrics.width;
+      if (testWidth > maxWidth && n > 0) {
+        context.fillText(line, x, y);
+        line = words[n];
+        y += lineHeight;
+      }
+      else {
+        line = testLine;
+      }
+    }
+    context.fillText(line, x, y);
+    context.restore();
   }
 
 }

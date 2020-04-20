@@ -33,7 +33,9 @@ export class AppComponent implements OnInit {
       time: ['2020年1月1日', Validators.required],
       address: ['北京·阜通·608会议室', Validators.required],
       vol: ['第X期', Validators.required],
-      topics: ['测试主题1 @hijiangtao\n测试主题2 @hijiangtao\n鼠标事件基础回顾 @hijiangtao\nAngular ControlValueAccessor 介绍与实战 @hijiangtao\n关于 Angular NgZone 的一些介绍 @hijiangtao', Validators.required],
+      topics: ['新人介绍与欢迎环节 (5min)\n经验与疑问分享 (10min)\n技术前沿讯息分享 (5-10min)\n主题分享 (<20min)\n其他环节 (TBD)', Validators.required],
+      bgColor: ['#FF4C00', Validators.required],
+      description: ['这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述']
     });
 
     this.updateStore(this.billboardForm.value);
