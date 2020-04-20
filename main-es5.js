@@ -178,7 +178,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             time: ['2020年1月1日', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             address: ['北京·阜通·608会议室', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             vol: ['第X期', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            topics: ['测试主题1 @hijiangtao\n测试主题2 @hijiangtao\n鼠标事件基础回顾 @hijiangtao\nAngular ControlValueAccessor 介绍与实战 @hijiangtao\n关于 Angular NgZone 的一些介绍 @hijiangtao', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]
+            topics: ['新人介绍与欢迎环节 (5min)\n经验与疑问分享 (10min)\n技术前沿讯息分享 (5-10min)\n主题分享 (<20min)\n其他环节 (TBD)', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            bgColor: ['#FF4C00', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            description: ['这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述']
           });
           this.updateStore(this.billboardForm.value);
           this.billboardForm.valueChanges.subscribe(function (value) {
@@ -232,9 +234,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.fileInput = _t.first);
         }
       },
-      decls: 34,
+      decls: 40,
       vars: 3,
-      consts: [["role", "banner", 1, "toolbar"], [1, "spacer"], ["aria-label", "Info on Github", "target", "_blank", "rel", "noopener", "href", "https://github.com/hijiangtao/billboard-generator", "title", "GitHub"], ["src", "assets/github.svg", "id", "github-icon"], ["role", "main", 1, "content"], [1, "form", 3, "formGroup"], ["type", "file"], ["fileInput", ""], [3, "click"], ["type", "text", "formControlName", "title"], ["type", "text", "formControlName", "organization"], ["type", "text", "formControlName", "time"], ["type", "text", "formControlName", "address"], ["type", "text", "formControlName", "vol"], ["formControlName", "topics", "rows", "5"], [3, "info"]],
+      consts: [["role", "banner", 1, "toolbar"], [1, "spacer"], ["aria-label", "Info on Github", "target", "_blank", "rel", "noopener", "href", "https://github.com/hijiangtao/billboard-generator", "title", "GitHub"], ["src", "assets/github.svg", "id", "github-icon"], ["role", "main", 1, "content"], [1, "form", 3, "formGroup"], ["type", "file"], ["fileInput", ""], [3, "click"], ["type", "text", "formControlName", "title"], ["type", "text", "formControlName", "organization"], ["type", "text", "formControlName", "time"], ["type", "text", "formControlName", "address"], ["type", "text", "formControlName", "vol"], ["type", "color", "formControlName", "bgColor"], ["formControlName", "topics", "rows", "5"], ["formControlName", "description"], [3, "info"]],
       template: function AppComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -319,19 +321,35 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "label");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, " Topics: ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, " Color: ");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](31, "textarea", 14);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](31, "input", 14);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](33, " Topics: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](34, "textarea", 15);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, " Description: ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](37, "textarea", 16);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](32, "app-canvas", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "app-canvas", 17);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](33, "router-outlet");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](39, "router-outlet");
         }
 
         if (rf & 2) {
@@ -343,7 +361,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.billboardForm);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](31);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("info", ctx.billboardData);
         }
@@ -547,7 +565,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               time = val.time,
               address = val.address,
               vol = val.vol,
+              bgColor = val.bgColor,
               topics = val.topics,
+              description = val.description,
               logoPath = val.logoPath;
           var commonConfig = {
             size: 20,
@@ -557,7 +577,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             textBaseline: 'middle'
           };
           var commonStyle = this.commonStyle;
-          this.clearCanvas(this.context);
+          this.clearCanvas(this.context, bgColor);
           var realLogo = logoPath || 'assets/github.svg'; // 
 
           this.drawLogo(realLogo, this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight);
@@ -578,6 +598,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 size: commonStyle.topicLineheight / 2
               }));
             });
+          }
+
+          if (description) {
+            this.wrapText(this.context, description, commonStyle.marginLeft, topics.split('\n').length * commonStyle.topicLineheight + commonStyle.topicMarginTop + 60, this.CANVAS_WIDTH - commonStyle.marginLeft - commonStyle.marginRight, 40);
           }
 
           this.drawTextItem(time, commonStyle.marginLeft, this.CANVAS_HEIGHT - 80, Object.assign(Object.assign({}, commonConfig), {
@@ -627,9 +651,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "clearCanvas",
-        value: function clearCanvas(ctx) {
-          ctx.fillStyle = "#FF4C00"; // ctx.clearRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
-
+        value: function clearCanvas(ctx, bgColor) {
+          ctx.fillStyle = bgColor || "#FF4C00";
           ctx.beginPath();
           ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
           ctx.closePath();
@@ -644,6 +667,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           ctx.drawImage(img, 0, 0);
           var dataURL = canvas.toDataURL("image/png");
           return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+        }
+      }, {
+        key: "wrapText",
+        value: function wrapText(context, text, x, y, maxWidth, lineHeight) {
+          var words = text.split('');
+          var line = '';
+          context.save();
+          context.font = "normal 20px sans-serif";
+
+          for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n];
+            var metrics = context.measureText(testLine);
+            var testWidth = metrics.width;
+
+            if (testWidth > maxWidth && n > 0) {
+              context.fillText(line, x, y);
+              line = words[n];
+              y += lineHeight;
+            } else {
+              line = testLine;
+            }
+          }
+
+          context.fillText(line, x, y);
+          context.restore();
         }
       }, {
         key: "info",
