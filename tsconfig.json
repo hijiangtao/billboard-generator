@@ -19,6 +19,7 @@
     "strictInjectionParameters": true
   },
   "paths": {
+    "@component/*": ["app/component/*"],
     "@service/*": ["app/service/*"]
   }
 }

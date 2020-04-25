@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  TemplateRef,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
 
@@ -49,15 +59,21 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     }
   }
 
+  @Output()
+  onImageChange = new EventEmitter<string | null>();
+
   @ViewChild('canvasEle', { static: false }) myCanvas: ElementRef;
   public context: CanvasRenderingContext2D;
+
+  canvas: HTMLCanvasElement;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.context = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
+    this.canvas = this.myCanvas.nativeElement;
+    this.context = this.canvas.getContext('2d');
     if (this._data) {
       this.renderBillboard(this._data);
     }
@@ -139,11 +155,18 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       color: '#f4ea2a',
       textAlign: 'right',
     });
+
+    try {
+      this.onImageChange.emit(this.canvas.toDataURL());
+    } catch (error) {
+      console.error(`[error] ${JSON.stringify(error)}`);
+      this.onImageChange.emit(null);
+    }
   }
 
   drawTextItem(text: string, x: number, y: number, fontConfig: FontItemConfig) {
     if (!text || x === undefined || y === undefined) {
-      throw new Error('Lack of necessary parameters.');
+      console.error(`Lack of necessary parameters.`);
     }
     this.context.fillStyle = fontConfig.color || '#fff';
     this.context.font = `bold ${fontConfig.size || 20}px sans-serif`;
@@ -199,7 +222,6 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     context.save();
     context.font = `normal 20px sans-serif`;
     lines.map((line) => {
-      console.log('line is ', line);
       let linetext = '';
       const words = line.split('');
 

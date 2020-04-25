@@ -9,49 +9,5 @@
 </div>
 
 <div class="content" role="main">
-  <!-- form -->
-  <form class="form" [formGroup]="billboardForm">
-    <label>
-      LOGO:
-      <input #fileInput type="file" />
-      <button (click)="addImageFile()">Add Image</button>
-    </label>
-    <label>
-      Title:
-      <input type="text" formControlName="title">
-    </label>
-    <label>
-      Organization:
-      <input type="text" formControlName="organization">
-    </label>
-    <label>
-      Time:
-      <input type="text" formControlName="time">
-    </label>
-    <label>
-      Address:
-      <input type="text" formControlName="address">
-    </label>
-    <label>
-      Vol:
-      <input type="text" formControlName="vol">
-    </label>
-    <label>
-      Color:
-      <input type="color" formControlName="bgColor">
-    </label>
-    <label>
-      Topics:
-      <textarea formControlName="topics" rows="5"></textarea>
-    </label>
-    <br />
-    <label>
-      Description:
-      <textarea class="description" formControlName="description" rows="3"></textarea>
-    </label>
-  </form>
-
-  <app-canvas [info]="billboardData"></app-canvas>
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>
