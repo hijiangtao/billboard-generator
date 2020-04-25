@@ -80,7 +80,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       factory: function AppRoutingModule_Factory(t) {
         return new (t || AppRoutingModule)();
       },
-      imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
+      imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+        preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"]
+      })], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
     });
 
     (function () {
@@ -96,7 +98,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppRoutingModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-          imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes)],
+          imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
+            preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"]
+          })],
           exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         }]
       }], null, null);
@@ -174,11 +178,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.billboardForm = this.fb.group({
             title: ['分享会主题名称', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            organization: ['Focus 前端小组', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            organization: ['服务平台前端小组', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             time: ['2020年1月1日', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             address: ['北京·阜通·608会议室', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            vol: ['第X期', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
-            topics: ['新人介绍与欢迎环节 (5min)\n经验与疑问分享 (10min)\n技术前沿讯息分享 (5-10min)\n主题分享 (<20min)\n其他环节 (TBD)', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            vol: ['Vol.X / 第X期', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
+            topics: ['新人介绍与欢迎环节 (5min)\n经验与疑问分享 (10min)\n技术前沿讯息分享 (5-10min)\n主题分享 (20-35min)\n其他环节 (TBD)', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             bgColor: ['#FF4C00', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             description: ['这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述']
           });
@@ -234,9 +238,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.fileInput = _t.first);
         }
       },
-      decls: 40,
+      decls: 41,
       vars: 3,
-      consts: [["role", "banner", 1, "toolbar"], [1, "spacer"], ["aria-label", "Info on Github", "target", "_blank", "rel", "noopener", "href", "https://github.com/hijiangtao/billboard-generator", "title", "GitHub"], ["src", "assets/github.svg", "id", "github-icon"], ["role", "main", 1, "content"], [1, "form", 3, "formGroup"], ["type", "file"], ["fileInput", ""], [3, "click"], ["type", "text", "formControlName", "title"], ["type", "text", "formControlName", "organization"], ["type", "text", "formControlName", "time"], ["type", "text", "formControlName", "address"], ["type", "text", "formControlName", "vol"], ["type", "color", "formControlName", "bgColor"], ["formControlName", "topics", "rows", "5"], ["formControlName", "description"], [3, "info"]],
+      consts: [["role", "banner", 1, "toolbar"], [1, "spacer"], ["aria-label", "Info on Github", "target", "_blank", "rel", "noopener", "href", "https://github.com/hijiangtao/billboard-generator", "title", "GitHub"], ["src", "assets/github.svg", "id", "github-icon"], ["role", "main", 1, "content"], [1, "form", 3, "formGroup"], ["type", "file"], ["fileInput", ""], [3, "click"], ["type", "text", "formControlName", "title"], ["type", "text", "formControlName", "organization"], ["type", "text", "formControlName", "time"], ["type", "text", "formControlName", "address"], ["type", "text", "formControlName", "vol"], ["type", "color", "formControlName", "bgColor"], ["formControlName", "topics", "rows", "5"], ["formControlName", "description", "rows", "3", 1, "description"], [3, "info"]],
       template: function AppComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
@@ -335,21 +339,23 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](35, "br");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, " Description: ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "label");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](37, "textarea", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](37, " Description: ");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "app-canvas", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](38, "textarea", 16);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](39, "router-outlet");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](39, "app-canvas", 17);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](40, "router-outlet");
         }
 
         if (rf & 2) {
@@ -361,13 +367,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.billboardForm);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](31);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](32);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("info", ctx.billboardData);
         }
       },
       directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵangular_packages_forms_forms_y"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatusGroup"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroupDirective"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControlName"], _canvas_canvas_component__WEBPACK_IMPORTED_MODULE_2__["CanvasComponent"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterOutlet"]],
-      styles: ["[_nghost-%COMP%] {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n  font-size: 14px;\n  color: #333;\n  box-sizing: border-box;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n.spacer[_ngcontent-%COMP%] {\n  flex: 1;\n}\n\n.form[_ngcontent-%COMP%] {\n  margin-bottom: 20px;\n}\n\n.form[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  margin-bottom: 5px;\n}\n\n.toolbar[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 60px;\n  display: flex;\n  align-items: center;\n  background-color: #1976d2;\n  color: white;\n  font-weight: 600;\n}\n\n.toolbar[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-left: 10px;\n}\n\n.toolbar[_ngcontent-%COMP%]   #github-icon[_ngcontent-%COMP%] {\n  height: 40px;\n  margin: 0 16px;\n}\n\n.toolbar[_ngcontent-%COMP%]   #github-icon[_ngcontent-%COMP%]:hover {\n  opacity: 0.8;\n}\n\n.content[_ngcontent-%COMP%] {\n  display: flex;\n  margin: 82px auto 32px;\n  padding: 0 16px;\n  max-width: 960px;\n  flex-direction: column;\n  align-items: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9oaWppYW5ndGFvL0RvY3VtZW50cy9naXQvc3R1ZHkvY2FudmFzLWJpbGxib2FyZC9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsMEpBQUE7RUFFQSxlQUFBO0VBQ0EsV0FBQTtFQUNBLHNCQUFBO0VBQ0EsbUNBQUE7RUFDQSxrQ0FBQTtBQ0FGOztBREdBO0VBQ0UsT0FBQTtBQ0FGOztBREdBO0VBQ0ksbUJBQUE7QUNBSjs7QURFSTtFQUNJLGtCQUFBO0FDQVI7O0FESUE7RUFDRSxrQkFBQTtFQUNBLE1BQUE7RUFDQSxPQUFBO0VBQ0EsUUFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtBQ0RGOztBREdFO0VBQ0ksaUJBQUE7QUNETjs7QURLQTtFQUNFLFlBQUE7RUFDQSxjQUFBO0FDRkY7O0FES0E7RUFDRSxZQUFBO0FDRkY7O0FES0E7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0FDRkYiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XG4gIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsIFwiU2Vnb2UgVUlcIiwgUm9ib3RvLCBIZWx2ZXRpY2EsXG4gICAgQXJpYWwsIHNhbnMtc2VyaWYsIFwiQXBwbGUgQ29sb3IgRW1vamlcIiwgXCJTZWdvZSBVSSBFbW9qaVwiLCBcIlNlZ29lIFVJIFN5bWJvbFwiO1xuICBmb250LXNpemU6IDE0cHg7XG4gIGNvbG9yOiAjMzMzO1xuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xuICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTtcbn1cblxuLnNwYWNlciB7XG4gIGZsZXg6IDE7XG59XG5cbi5mb3JtIHtcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuXG4gICAgbGFiZWwge1xuICAgICAgICBtYXJnaW4tYm90dG9tOiA1cHg7XG4gICAgfVxufVxuXG4udG9vbGJhciB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgaGVpZ2h0OiA2MHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTk3NmQyO1xuICBjb2xvcjogd2hpdGU7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG5cbiAgc3BhbiB7XG4gICAgICBtYXJnaW4tbGVmdDogMTBweDtcbiAgfVxufVxuXG4udG9vbGJhciAjZ2l0aHViLWljb24ge1xuICBoZWlnaHQ6IDQwcHg7XG4gIG1hcmdpbjogMCAxNnB4O1xufVxuXG4udG9vbGJhciAjZ2l0aHViLWljb246aG92ZXIge1xuICBvcGFjaXR5OiAwLjg7XG59XG5cbi5jb250ZW50IHtcbiAgZGlzcGxheTogZmxleDtcbiAgbWFyZ2luOiA4MnB4IGF1dG8gMzJweDtcbiAgcGFkZGluZzogMCAxNnB4O1xuICBtYXgtd2lkdGg6IDk2MHB4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuIiwiOmhvc3Qge1xuICBmb250LWZhbWlseTogLWFwcGxlLXN5c3RlbSwgQmxpbmtNYWNTeXN0ZW1Gb250LCBcIlNlZ29lIFVJXCIsIFJvYm90bywgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiwgXCJBcHBsZSBDb2xvciBFbW9qaVwiLCBcIlNlZ29lIFVJIEVtb2ppXCIsIFwiU2Vnb2UgVUkgU3ltYm9sXCI7XG4gIGZvbnQtc2l6ZTogMTRweDtcbiAgY29sb3I6ICMzMzM7XG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xuICAtbW96LW9zeC1mb250LXNtb290aGluZzogZ3JheXNjYWxlO1xufVxuXG4uc3BhY2VyIHtcbiAgZmxleDogMTtcbn1cblxuLmZvcm0ge1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufVxuLmZvcm0gbGFiZWwge1xuICBtYXJnaW4tYm90dG9tOiA1cHg7XG59XG5cbi50b29sYmFyIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDA7XG4gIGxlZnQ6IDA7XG4gIHJpZ2h0OiAwO1xuICBoZWlnaHQ6IDYwcHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGJhY2tncm91bmQtY29sb3I6ICMxOTc2ZDI7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgZm9udC13ZWlnaHQ6IDYwMDtcbn1cbi50b29sYmFyIHNwYW4ge1xuICBtYXJnaW4tbGVmdDogMTBweDtcbn1cblxuLnRvb2xiYXIgI2dpdGh1Yi1pY29uIHtcbiAgaGVpZ2h0OiA0MHB4O1xuICBtYXJnaW46IDAgMTZweDtcbn1cblxuLnRvb2xiYXIgI2dpdGh1Yi1pY29uOmhvdmVyIHtcbiAgb3BhY2l0eTogMC44O1xufVxuXG4uY29udGVudCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIG1hcmdpbjogODJweCBhdXRvIDMycHg7XG4gIHBhZGRpbmc6IDAgMTZweDtcbiAgbWF4LXdpZHRoOiA5NjBweDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn0iXX0= */"]
+      styles: ["[_nghost-%COMP%] {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n  font-size: 14px;\n  color: #333;\n  box-sizing: border-box;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n.spacer[_ngcontent-%COMP%] {\n  flex: 1;\n}\n\n.form[_ngcontent-%COMP%] {\n  margin-bottom: 20px;\n}\n\n.form[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  margin-bottom: 5px;\n}\n\n.toolbar[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 60px;\n  display: flex;\n  align-items: center;\n  background-color: #1976d2;\n  color: white;\n  font-weight: 600;\n}\n\n.toolbar[_ngcontent-%COMP%]   span[_ngcontent-%COMP%] {\n  margin-left: 10px;\n}\n\n.toolbar[_ngcontent-%COMP%]   #github-icon[_ngcontent-%COMP%] {\n  height: 40px;\n  margin: 0 16px;\n}\n\n.toolbar[_ngcontent-%COMP%]   #github-icon[_ngcontent-%COMP%]:hover {\n  opacity: 0.8;\n}\n\n.content[_ngcontent-%COMP%] {\n  display: flex;\n  margin: 82px auto 32px;\n  padding: 0 16px;\n  max-width: 960px;\n  flex-direction: column;\n  align-items: center;\n}\n\n.content[_ngcontent-%COMP%]   .description[_ngcontent-%COMP%] {\n  width: 100%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9oaWppYW5ndGFvL0RvY3VtZW50cy9naXQvc3R1ZHkvY2FudmFzLWJpbGxib2FyZC9zcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsMEpBQUE7RUFFQSxlQUFBO0VBQ0EsV0FBQTtFQUNBLHNCQUFBO0VBQ0EsbUNBQUE7RUFDQSxrQ0FBQTtBQ0FGOztBREdBO0VBQ0UsT0FBQTtBQ0FGOztBREdBO0VBQ0UsbUJBQUE7QUNBRjs7QURFRTtFQUNFLGtCQUFBO0FDQUo7O0FESUE7RUFDRSxrQkFBQTtFQUNBLE1BQUE7RUFDQSxPQUFBO0VBQ0EsUUFBQTtFQUNBLFlBQUE7RUFDQSxhQUFBO0VBQ0EsbUJBQUE7RUFDQSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtBQ0RGOztBREdFO0VBQ0UsaUJBQUE7QUNESjs7QURLQTtFQUNFLFlBQUE7RUFDQSxjQUFBO0FDRkY7O0FES0E7RUFDRSxZQUFBO0FDRkY7O0FES0E7RUFDRSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0FDRkY7O0FESUU7RUFDRSxXQUFBO0FDRkoiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCB7XG4gIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsIFJvYm90bywgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiwgJ0FwcGxlIENvbG9yIEVtb2ppJyxcbiAgICAnU2Vnb2UgVUkgRW1vamknLCAnU2Vnb2UgVUkgU3ltYm9sJztcbiAgZm9udC1zaXplOiAxNHB4O1xuICBjb2xvcjogIzMzMztcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgLXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG4gIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XG59XG5cbi5zcGFjZXIge1xuICBmbGV4OiAxO1xufVxuXG4uZm9ybSB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG5cbiAgbGFiZWwge1xuICAgIG1hcmdpbi1ib3R0b206IDVweDtcbiAgfVxufVxuXG4udG9vbGJhciB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAwO1xuICBsZWZ0OiAwO1xuICByaWdodDogMDtcbiAgaGVpZ2h0OiA2MHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMTk3NmQyO1xuICBjb2xvcjogd2hpdGU7XG4gIGZvbnQtd2VpZ2h0OiA2MDA7XG5cbiAgc3BhbiB7XG4gICAgbWFyZ2luLWxlZnQ6IDEwcHg7XG4gIH1cbn1cblxuLnRvb2xiYXIgI2dpdGh1Yi1pY29uIHtcbiAgaGVpZ2h0OiA0MHB4O1xuICBtYXJnaW46IDAgMTZweDtcbn1cblxuLnRvb2xiYXIgI2dpdGh1Yi1pY29uOmhvdmVyIHtcbiAgb3BhY2l0eTogMC44O1xufVxuXG4uY29udGVudCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIG1hcmdpbjogODJweCBhdXRvIDMycHg7XG4gIHBhZGRpbmc6IDAgMTZweDtcbiAgbWF4LXdpZHRoOiA5NjBweDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcblxuICAuZGVzY3JpcHRpb24ge1xuICAgIHdpZHRoOiAxMDAlO1xuICB9XG59XG4iLCI6aG9zdCB7XG4gIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsIFwiU2Vnb2UgVUlcIiwgUm9ib3RvLCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmLCBcIkFwcGxlIENvbG9yIEVtb2ppXCIsIFwiU2Vnb2UgVUkgRW1vamlcIiwgXCJTZWdvZSBVSSBTeW1ib2xcIjtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBjb2xvcjogIzMzMztcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgLXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XG4gIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XG59XG5cbi5zcGFjZXIge1xuICBmbGV4OiAxO1xufVxuXG4uZm9ybSB7XG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG4uZm9ybSBsYWJlbCB7XG4gIG1hcmdpbi1ib3R0b206IDVweDtcbn1cblxuLnRvb2xiYXIge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgcmlnaHQ6IDA7XG4gIGhlaWdodDogNjBweDtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzE5NzZkMjtcbiAgY29sb3I6IHdoaXRlO1xuICBmb250LXdlaWdodDogNjAwO1xufVxuLnRvb2xiYXIgc3BhbiB7XG4gIG1hcmdpbi1sZWZ0OiAxMHB4O1xufVxuXG4udG9vbGJhciAjZ2l0aHViLWljb24ge1xuICBoZWlnaHQ6IDQwcHg7XG4gIG1hcmdpbjogMCAxNnB4O1xufVxuXG4udG9vbGJhciAjZ2l0aHViLWljb246aG92ZXIge1xuICBvcGFjaXR5OiAwLjg7XG59XG5cbi5jb250ZW50IHtcbiAgZGlzcGxheTogZmxleDtcbiAgbWFyZ2luOiA4MnB4IGF1dG8gMzJweDtcbiAgcGFkZGluZzogMCAxNnB4O1xuICBtYXgtd2lkdGg6IDk2MHB4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuLmNvbnRlbnQgLmRlc2NyaXB0aW9uIHtcbiAgd2lkdGg6IDEwMCU7XG59Il19 */"]
     });
     /*@__PURE__*/
 
@@ -386,7 +392,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         fileInput: [{
           type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"],
-          args: ["fileInput", {
+          args: ['fileInput', {
             "static": true
           }]
         }]
@@ -534,7 +540,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.CANVAS_WIDTH = 750;
         this.CANVAS_HEIGHT = 1240;
-        this.LOGO_SIZE = 50;
+        this.LOGO_SIZE = 100;
         this.commonStyle = {
           marginLeft: 30,
           marginRight: 30,
@@ -578,11 +584,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           };
           var commonStyle = this.commonStyle;
           this.clearCanvas(this.context, bgColor);
-          var realLogo = logoPath || 'assets/github.svg'; // 
+          var realLogo = logoPath || 'assets/github.svg'; //
 
           this.drawLogo(realLogo, this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight);
           this.drawTextItem(title, commonStyle.marginLeft, 230, Object.assign(Object.assign({}, commonConfig), {
-            size: 86
+            size: 82
           }));
           this.drawTextItem(organization, commonStyle.marginLeft, 320, Object.assign(Object.assign({}, commonConfig), {
             size: 50,
@@ -612,8 +618,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             size: 20,
             color: '#000'
           }));
-          this.drawTextItem(vol, this.CANVAS_WIDTH - commonStyle.marginRight, commonStyle.marginRight + this.LOGO_SIZE + 30, Object.assign(Object.assign({}, commonConfig), {
-            size: 20,
+          var volTextMarginRight = this.CANVAS_WIDTH - commonStyle.marginRight - this.LOGO_SIZE - commonStyle.marginRight;
+          var volTextMarginTop = commonStyle.marginRight + this.LOGO_SIZE / 2;
+          var volFontsize = 20;
+          this.drawTextItem(vol, volTextMarginRight, volTextMarginTop, Object.assign(Object.assign({}, commonConfig), {
+            size: volFontsize,
             color: '#f4ea2a',
             textAlign: 'right'
           }));
@@ -652,7 +661,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "clearCanvas",
         value: function clearCanvas(ctx, bgColor) {
-          ctx.fillStyle = bgColor || "#FF4C00";
+          ctx.fillStyle = bgColor || '#FF4C00';
           ctx.beginPath();
           ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
           ctx.closePath();
@@ -660,37 +669,46 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getBase64Image",
         value: function getBase64Image(img) {
-          var canvas = document.createElement("canvas");
+          var canvas = document.createElement('canvas');
           canvas.width = img.width;
           canvas.height = img.height;
-          var ctx = canvas.getContext("2d");
+          var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0);
-          var dataURL = canvas.toDataURL("image/png");
-          return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+          var dataURL = canvas.toDataURL('image/png');
+          return dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
         }
       }, {
         key: "wrapText",
         value: function wrapText(context, text, x, y, maxWidth, lineHeight) {
-          var words = text.split('');
-          var line = '';
+          var wrapWithNewline = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : true;
+          var lines = wrapWithNewline ? text.split('\n') : [text];
           context.save();
           context.font = "normal 20px sans-serif";
+          lines.map(function (line) {
+            console.log('line is ', line);
+            var linetext = '';
+            var words = line.split('');
 
-          for (var n = 0; n < words.length; n++) {
-            var testLine = line + words[n];
-            var metrics = context.measureText(testLine);
-            var testWidth = metrics.width;
+            for (var n = 0; n < words.length; n++) {
+              var testLine = linetext + words[n];
+              var metrics = context.measureText(testLine);
+              var testWidth = metrics.width;
 
-            if (testWidth > maxWidth && n > 0) {
-              context.fillText(line, x, y);
-              line = words[n];
-              y += lineHeight;
-            } else {
-              line = testLine;
+              if (testWidth > maxWidth && n > 0) {
+                context.fillText(linetext, x, y);
+                linetext = words[n];
+                y += lineHeight;
+              } else {
+                linetext = testLine;
+              }
             }
-          }
 
-          context.fillText(line, x, y);
+            if (linetext) {
+              context.fillText(linetext, x, y);
+            }
+
+            y += lineHeight;
+          });
           context.restore();
         }
       }, {
