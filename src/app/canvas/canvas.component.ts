@@ -25,7 +25,7 @@ interface FontItemConfig {
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.scss']
+  styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
   _data: any;
@@ -40,23 +40,21 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     topicMarginTop: 440,
     topicLineheight: 50,
   };
-  
+
   @Input()
   set info(val) {
     this._data = val;
     if (this.context && val) {
       this.renderBillboard(val);
     }
-  };
+  }
 
-  @ViewChild('canvasEle', {static: false}) myCanvas: ElementRef;
+  @ViewChild('canvasEle', { static: false }) myCanvas: ElementRef;
   public context: CanvasRenderingContext2D;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.context = (<HTMLCanvasElement>this.myCanvas.nativeElement).getContext('2d');
@@ -66,17 +64,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   }
 
   renderBillboard(val) {
-    const {
-      title,
-      organization,
-      time,
-      address,
-      vol,
-      bgColor,
-      topics,
-      description,
-      logoPath,
-    } = val;
+    const { title, organization, time, address, vol, bgColor, topics, description, logoPath } = val;
 
     const commonConfig: FontItemConfig = {
       size: 20,
@@ -92,7 +80,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     const realLogo = logoPath || 'assets/github.svg';
 
-    // 
+    //
     this.drawLogo(realLogo, this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight);
 
     this.drawTextItem(title, commonStyle.marginLeft, 230, {
@@ -114,13 +102,20 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
         this.drawTextItem(`- ${topic}`, commonStyle.marginLeft, topicY, {
           ...commonConfig,
-          size: commonStyle.topicLineheight / 2
+          size: commonStyle.topicLineheight / 2,
         });
       });
     }
 
     if (description) {
-      this.wrapText(this.context, description, commonStyle.marginLeft, topics.split('\n').length * commonStyle.topicLineheight + commonStyle.topicMarginTop + 60, this.CANVAS_WIDTH - commonStyle.marginLeft - commonStyle.marginRight, 40);
+      this.wrapText(
+        this.context,
+        description,
+        commonStyle.marginLeft,
+        topics.split('\n').length * commonStyle.topicLineheight + commonStyle.topicMarginTop + 60,
+        this.CANVAS_WIDTH - commonStyle.marginLeft - commonStyle.marginRight,
+        40
+      );
     }
 
     this.drawTextItem(time, commonStyle.marginLeft, this.CANVAS_HEIGHT - 80, {
@@ -141,7 +136,6 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       color: '#f4ea2a',
       textAlign: 'right',
     });
-    
   }
 
   drawTextItem(text: string, x: number, y: number, fontConfig: FontItemConfig) {
@@ -158,40 +152,34 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   drawLogo(file, x: number, y: number) {
     let img = new Image();
     img.crossOrigin = 'Anonymous';
-      
+
     img.onload = () => {
-      this.context.drawImage(
-        img,
-        x,
-        y,
-        this.LOGO_SIZE,
-        this.LOGO_SIZE,
-      )
+      this.context.drawImage(img, x, y, this.LOGO_SIZE, this.LOGO_SIZE);
     };
     img.onerror = (err) => {
-        console.error(err);
+      console.error(err);
     };
-  
+
     img.src = file;
   }
 
   clearCanvas(ctx: CanvasRenderingContext2D, bgColor: string) {
-    ctx.fillStyle = bgColor || "#FF4C00";
+    ctx.fillStyle = bgColor || '#FF4C00';
     ctx.beginPath();
-    ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);  
-    ctx.closePath();  
+    ctx.fillRect(0, 0, this.CANVAS_WIDTH, this.CANVAS_HEIGHT);
+    ctx.closePath();
   }
 
- getBase64Image(img: HTMLImageElement) {
-    const canvas = document.createElement("canvas");
+  getBase64Image(img: HTMLImageElement) {
+    const canvas = document.createElement('canvas');
     canvas.width = img.width;
     canvas.height = img.height;
-    let ctx = canvas.getContext("2d");
+    let ctx = canvas.getContext('2d');
 
     ctx.drawImage(img, 0, 0);
 
-    const dataURL = canvas.toDataURL("image/png");
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    const dataURL = canvas.toDataURL('image/png');
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
   }
 
   wrapText(context: CanvasRenderingContext2D, text, x, y, maxWidth, lineHeight) {
@@ -200,7 +188,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     context.save();
     context.font = `normal 20px sans-serif`;
-    for(let n = 0; n < words.length; n++) {
+    for (let n = 0; n < words.length; n++) {
       let testLine = line + words[n];
       let metrics = context.measureText(testLine);
       let testWidth = metrics.width;
@@ -208,13 +196,11 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         context.fillText(line, x, y);
         line = words[n];
         y += lineHeight;
-      }
-      else {
+      } else {
         line = testLine;
       }
     }
     context.fillText(line, x, y);
     context.restore();
   }
-
 }
