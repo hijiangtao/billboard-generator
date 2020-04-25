@@ -32,7 +32,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   CANVAS_WIDTH = 750;
   CANVAS_HEIGHT = 1240;
-  LOGO_SIZE = 50;
+  LOGO_SIZE = 100;
 
   commonStyle = {
     marginLeft: 30,
@@ -85,7 +85,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     this.drawTextItem(title, commonStyle.marginLeft, 230, {
       ...commonConfig,
-      size: 86,
+      size: 82,
     });
 
     this.drawTextItem(organization, commonStyle.marginLeft, 320, {
@@ -130,9 +130,12 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       color: '#000',
     });
 
-    this.drawTextItem(vol, this.CANVAS_WIDTH - commonStyle.marginRight, commonStyle.marginRight + this.LOGO_SIZE + 30, {
+    const volTextMarginRight = this.CANVAS_WIDTH - commonStyle.marginRight - this.LOGO_SIZE - commonStyle.marginRight;
+    const volTextMarginTop = commonStyle.marginRight + this.LOGO_SIZE / 2;
+    const volFontsize = 20;
+    this.drawTextItem(vol, volTextMarginRight, volTextMarginTop, {
       ...commonConfig,
-      size: 20,
+      size: volFontsize,
       color: '#f4ea2a',
       textAlign: 'right',
     });
@@ -182,25 +185,43 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, '');
   }
 
-  wrapText(context: CanvasRenderingContext2D, text, x, y, maxWidth, lineHeight) {
-    let words = text.split('');
-    let line = '';
+  wrapText(
+    context: CanvasRenderingContext2D,
+    text: string,
+    x: number,
+    y: number,
+    maxWidth: number,
+    lineHeight: number,
+    wrapWithNewline: boolean = true
+  ) {
+    const lines = wrapWithNewline ? text.split('\n') : [text];
 
     context.save();
     context.font = `normal 20px sans-serif`;
-    for (let n = 0; n < words.length; n++) {
-      let testLine = line + words[n];
-      let metrics = context.measureText(testLine);
-      let testWidth = metrics.width;
-      if (testWidth > maxWidth && n > 0) {
-        context.fillText(line, x, y);
-        line = words[n];
-        y += lineHeight;
-      } else {
-        line = testLine;
+    lines.map((line) => {
+      console.log('line is ', line);
+      let linetext = '';
+      const words = line.split('');
+
+      for (let n = 0; n < words.length; n++) {
+        let testLine = linetext + words[n];
+        let metrics = context.measureText(testLine);
+        let testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          context.fillText(linetext, x, y);
+          linetext = words[n];
+          y += lineHeight;
+        } else {
+          linetext = testLine;
+        }
       }
-    }
-    context.fillText(line, x, y);
+
+      if (linetext) {
+        context.fillText(linetext, x, y);
+      }
+      y += lineHeight;
+    });
+
     context.restore();
   }
 }
