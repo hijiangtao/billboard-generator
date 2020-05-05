@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -61,6 +61,12 @@ export class PosterInCanvasComponent implements OnInit {
         });
       };
       myReader.readAsDataURL(fileToUpload);
+
+      // Another way to create image url
+      //
+      // this.updateStore({
+      //   logoPath: URL.createObjectURL(fileToUpload),
+      // });
     }
   }
 
@@ -72,4 +78,12 @@ export class PosterInCanvasComponent implements OnInit {
     this.imgUrl$.next(url);
     this.cdRef.detectChanges();
   }
+
+  // @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {
+  //   const file = event && event.item(0);
+
+  //   this.updateStore({
+  //     logoPath: URL.createObjectURL(file),
+  //   });
+  // }
 }
