@@ -181,6 +181,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     img.onload = () => {
       this.context.drawImage(img, x, y, this.LOGO_SIZE, this.LOGO_SIZE);
+
+      try {
+        URL.revokeObjectURL(file);
+      } catch (error) {}
     };
     img.onerror = (err) => {
       console.error(err);

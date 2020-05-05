@@ -61,6 +61,12 @@ export class PosterInCanvasComponent implements OnInit {
         });
       };
       myReader.readAsDataURL(fileToUpload);
+
+      // Another way to create image url
+      //
+      // this.updateStore({
+      //   logoPath: URL.createObjectURL(fileToUpload),
+      // });
     }
   }
 
