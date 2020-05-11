@@ -10,7 +10,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, BehaviorSubject } from 'rxjs';
 
 interface BillboardConfig {
   title: string;
@@ -66,16 +66,25 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   public context: CanvasRenderingContext2D;
 
   canvas: HTMLCanvasElement;
+  dataUrl$: BehaviorSubject<string | null> = new BehaviorSubject(null);
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataUrl$.subscribe((url) => this.onImageChange.emit(url));
+  }
 
   ngAfterViewInit(): void {
     this.canvas = this.myCanvas.nativeElement;
     this.context = this.canvas.getContext('2d');
     if (this._data) {
       this.renderBillboard(this._data);
+    }
+  }
+
+  updateDataUrl(newDataUrl) {
+    if (this.dataUrl$.value !== newDataUrl) {
+      this.dataUrl$.next(newDataUrl);
     }
   }
 
@@ -157,7 +166,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     });
 
     try {
-      this.onImageChange.emit(this.canvas.toDataURL());
+      this.updateDataUrl(this.canvas.toDataURL());
     } catch (error) {
       console.error(`[error] ${JSON.stringify(error)}`);
       this.onImageChange.emit(null);
@@ -185,6 +194,8 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       try {
         URL.revokeObjectURL(file);
       } catch (error) {}
+
+      this.updateDataUrl(this.canvas.toDataURL());
     };
     img.onerror = (err) => {
       console.error(err);
