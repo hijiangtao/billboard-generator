@@ -62,13 +62,17 @@ const routes = [
 class AppRoutingModule {
 }
 AppRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: AppRoutingModule });
-AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"], enableTracing: true })],
+AppRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function AppRoutingModule_Factory(t) { return new (t || AppRoutingModule)(); }, imports: [[
+            _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"], enableTracing: true, useHash: true }),
+        ],
         _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] });
 (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](AppRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]] }); })();
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppRoutingModule, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
         args: [{
-                imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"], enableTracing: true })],
+                imports: [
+                    _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, { preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"], enableTracing: true, useHash: true }),
+                ],
                 exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]],
             }]
     }], null, null); })();
@@ -183,6 +187,8 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CanvasComponent", function() { return CanvasComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+
 
 
 const _c0 = ["canvasEle"];
@@ -198,6 +204,7 @@ class CanvasComponent {
             topicLineheight: 50,
         };
         this.onImageChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.dataUrl$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
     }
     set info(val) {
         this._data = val;
@@ -205,12 +212,19 @@ class CanvasComponent {
             this.renderBillboard(val);
         }
     }
-    ngOnInit() { }
+    ngOnInit() {
+        this.dataUrl$.subscribe((url) => this.onImageChange.emit(url));
+    }
     ngAfterViewInit() {
         this.canvas = this.myCanvas.nativeElement;
         this.context = this.canvas.getContext('2d');
         if (this._data) {
             this.renderBillboard(this._data);
+        }
+    }
+    updateDataUrl(newDataUrl) {
+        if (this.dataUrl$.value !== newDataUrl) {
+            this.dataUrl$.next(newDataUrl);
         }
     }
     renderBillboard(val) {
@@ -246,7 +260,7 @@ class CanvasComponent {
         const volFontsize = 20;
         this.drawTextItem(vol, volTextMarginRight, volTextMarginTop, Object.assign(Object.assign({}, commonConfig), { size: volFontsize, color: '#f4ea2a', textAlign: 'right' }));
         try {
-            this.onImageChange.emit(this.canvas.toDataURL());
+            this.updateDataUrl(this.canvas.toDataURL());
         }
         catch (error) {
             console.error(`[error] ${JSON.stringify(error)}`);
@@ -268,6 +282,11 @@ class CanvasComponent {
         img.crossOrigin = 'Anonymous';
         img.onload = () => {
             this.context.drawImage(img, x, y, this.LOGO_SIZE, this.LOGO_SIZE);
+            try {
+                URL.revokeObjectURL(file);
+            }
+            catch (error) { }
+            this.updateDataUrl(this.canvas.toDataURL());
         };
         img.onerror = (err) => {
             console.error(err);
@@ -423,6 +442,11 @@ class PosterInCanvasComponent {
                 });
             };
             myReader.readAsDataURL(fileToUpload);
+            // Another way to create image url
+            //
+            // this.updateStore({
+            //   logoPath: URL.createObjectURL(fileToUpload),
+            // });
         }
     }
     onSubmit(data) {

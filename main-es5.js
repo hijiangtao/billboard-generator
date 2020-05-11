@@ -105,7 +105,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       },
       imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
         preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"],
-        enableTracing: true
+        enableTracing: true,
+        useHash: true
       })], _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
     });
 
@@ -124,7 +125,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         args: [{
           imports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(routes, {
             preloadingStrategy: _angular_router__WEBPACK_IMPORTED_MODULE_1__["PreloadAllModules"],
-            enableTracing: true
+            enableTracing: true,
+            useHash: true
           })],
           exports: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"]]
         }]
@@ -380,6 +382,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
 
     var _c0 = ["canvasEle"];
 
@@ -399,11 +407,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           topicLineheight: 50
         };
         this.onImageChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.dataUrl$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
       }
 
       _createClass(CanvasComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          var _this = this;
+
+          this.dataUrl$.subscribe(function (url) {
+            return _this.onImageChange.emit(url);
+          });
+        }
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
@@ -415,9 +430,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
         }
       }, {
+        key: "updateDataUrl",
+        value: function updateDataUrl(newDataUrl) {
+          if (this.dataUrl$.value !== newDataUrl) {
+            this.dataUrl$.next(newDataUrl);
+          }
+        }
+      }, {
         key: "renderBillboard",
         value: function renderBillboard(val) {
-          var _this = this;
+          var _this2 = this;
 
           var title = val.title,
               organization = val.organization,
@@ -453,7 +475,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             topicList.map(function (topic, index) {
               var topicY = commonStyle.topicMarginTop + commonStyle.topicLineheight * index;
 
-              _this.drawTextItem("- ".concat(topic), commonStyle.marginLeft, topicY, Object.assign(Object.assign({}, commonConfig), {
+              _this2.drawTextItem("- ".concat(topic), commonStyle.marginLeft, topicY, Object.assign(Object.assign({}, commonConfig), {
                 size: commonStyle.topicLineheight / 2
               }));
             });
@@ -481,7 +503,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
 
           try {
-            this.onImageChange.emit(this.canvas.toDataURL());
+            this.updateDataUrl(this.canvas.toDataURL());
           } catch (error) {
             console.error("[error] ".concat(JSON.stringify(error)));
             this.onImageChange.emit(null);
@@ -503,13 +525,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "drawLogo",
         value: function drawLogo(file, x, y) {
-          var _this2 = this;
+          var _this3 = this;
 
           var img = new Image();
           img.crossOrigin = 'Anonymous';
 
           img.onload = function () {
-            _this2.context.drawImage(img, x, y, _this2.LOGO_SIZE, _this2.LOGO_SIZE);
+            _this3.context.drawImage(img, x, y, _this3.LOGO_SIZE, _this3.LOGO_SIZE);
+
+            try {
+              URL.revokeObjectURL(file);
+            } catch (error) {}
+
+            _this3.updateDataUrl(_this3.canvas.toDataURL());
           };
 
           img.onerror = function (err) {
@@ -753,7 +781,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this3 = this;
+          var _this4 = this;
 
           this.billboardForm = this.fb.group({
             title: ['分享会主题名称', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -767,13 +795,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           this.updateStore(this.billboardForm.value);
           this.billboardForm.valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["debounceTime"])(300)).subscribe(function (value) {
-            return _this3.updateStore(value);
+            return _this4.updateStore(value);
           });
         }
       }, {
         key: "addImageFile",
         value: function addImageFile() {
-          var _this4 = this;
+          var _this5 = this;
 
           var fi = this.fileInput.nativeElement;
 
@@ -782,12 +810,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             var myReader = new FileReader();
 
             myReader.onloadend = function (loadEvent) {
-              _this4.updateStore({
+              _this5.updateStore({
                 logoPath: loadEvent.target.result
               });
             };
 
-            myReader.readAsDataURL(fileToUpload);
+            myReader.readAsDataURL(fileToUpload); // Another way to create image url
+            //
+            // this.updateStore({
+            //   logoPath: URL.createObjectURL(fileToUpload),
+            // });
           }
         }
       }, {
