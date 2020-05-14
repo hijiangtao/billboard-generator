@@ -1,6 +1,6 @@
 # Billboard Generator
 
-![](./src/assets/poster.png 'poster")
+![](./src/assets/poster.png 'poster')
 
 You can use `billboard-generator` to generate mutilple kinds of activity posters, customize your content and logo, download the poster as a picture and share it with your friends.
 
