@@ -84,7 +84,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     const commonStyle = this.commonStyle;
 
-    this.cs.clearCtx(this.context, bgColor);
+    this.cs.clearCtx(this.context, this.CANVAS_WIDTH, this.CANVAS_HEIGHT, bgColor);
 
     const realLogo = logoPath || 'assets/github.svg';
 

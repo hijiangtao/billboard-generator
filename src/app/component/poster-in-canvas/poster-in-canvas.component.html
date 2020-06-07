@@ -1,49 +1,86 @@
 <ng-container>
-    <!-- form -->
-    <form class="form" [formGroup]="billboardForm">
-        <label>
-            LOGO:
-            <input #fileInput type="file" />
-            <button (click)="addImageFile()">Add Image</button>
-        </label>
-        <label>
-            Title:
-            <input type="text" formControlName="title">
-        </label>
-        <label>
-            Organization:
-            <input type="text" formControlName="organization">
-        </label>
-        <label>
-            Time:
-            <input type="text" formControlName="time">
-        </label>
-        <label>
-            Address:
-            <input type="text" formControlName="address">
-        </label>
-        <label>
-            Vol:
-            <input type="text" formControlName="vol">
-        </label>
-        <label>
-            Color:
-            <input type="color" formControlName="bgColor">
-        </label>
-        <label>
-            Topics:
-            <textarea formControlName="topics" rows="5"></textarea>
-        </label>
-        <br />
-        <label>
-            Description:
-            <textarea class="description" formControlName="description" rows="3"></textarea>
-        </label>
-        <br />
-        <ng-container *ngIf="imgUrl$ | async as imgUrl">
-            <a download="poster.png" [href]="imgUrl">点击下载海报</a>
-        </ng-container>
-    </form>
-
-    <app-canvas [info]="billboardData" (onImageChange)="onImageChange($event)"></app-canvas>
+    <div nz-row>
+        <div nz-col class="form-container" nzSpan="15">
+            <nz-card nzTitle="海报配置">
+                <!-- form -->
+                <form nz-form class="form" [formGroup]="billboardForm">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="poster-logo">LOGO</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input #fileInput nz-input type="file" id="poster-logo" />
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-control [nzSpan]="8" [nzOffset]="6">
+                            <button nz-button nzType="primary" (click)="addImageFile()">
+                                <i nz-icon nzType="upload"></i>添加 Logo
+                            </button>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="title" nzRequired>Title</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input nz-input type="text" formControlName="title">
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="organization" nzRequired>Organization</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input nz-input type="text" formControlName="organization">
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="time" nzRequired>Time</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input nz-input type="text" formControlName="time">
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="address" nzRequired>Address</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input nz-input type="text" formControlName="address">
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="vol" nzRequired>Vol</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input nz-input type="text" formControlName="vol">
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="bgColor" nzRequired>Background Color</nz-form-label>
+                        <nz-form-control [nzSpan]="8">
+                            <input nz-input type="color" formControlName="bgColor">
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="topics" nzRequired>Topics</nz-form-label>
+                        <nz-form-control [nzSpan]="18">
+                            <textarea nz-input formControlName="topics" rows="5"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="6" nzFor="description" nzRequired>Description</nz-form-label>
+                        <nz-form-control [nzSpan]="18">
+                            <textarea nz-input formControlName="description" rows="3"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item *ngIf="imgUrl$ | async as imgUrl">
+                        <nz-form-control [nzSpan]="8" [nzOffset]="6">
+                            <button nz-button nzType="primary">
+                                <a download="poster.png" [href]="imgUrl">
+                                    <i nz-icon nzType="check-circle"></i>&nbsp;点击下载海报
+                                </a>
+                            </button>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </nz-card>
+        </div>
+        <div nz-col nzSpan="9">
+            <nz-card nzTitle="预览图">
+                <app-canvas [info]="billboardData" (onImageChange)="onImageChange($event)"></app-canvas>
+            </nz-card>
+        </div>
+    </div>
 </ng-container>

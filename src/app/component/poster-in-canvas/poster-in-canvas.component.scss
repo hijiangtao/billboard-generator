@@ -1,5 +1,10 @@
 :host {
-  .description {
-    width: 100%;
+  div {
+    height: 100%;
+
+    nz-card {
+      overflow-y: scroll;
+      height: 100%;
+    }
   }
 }

@@ -1,13 +1,14 @@
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <span>{{ title }}</span>
-  <div class="spacer"></div>
-  <a aria-label="Info on Github" target="_blank" rel="noopener" href="https://github.com/hijiangtao/billboard-generator"
-    title="GitHub">
-    <img src="assets/github.svg" id="github-icon" />
-  </a>
-</div>
-
-<div class="content" role="main">
-  <router-outlet></router-outlet>
-</div>
+<nz-layout>
+  <nz-header>
+    <h1>{{ title }}</h1>
+  </nz-header>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
+  <nz-footer>
+    <a aria-label="Info on Github" target="_blank" rel="noopener"
+      href="https://github.com/hijiangtao/billboard-generator" title="GitHub">
+      <img src="assets/github.svg" id="github-icon" />
+    </a>
+  </nz-footer>
+</nz-layout>

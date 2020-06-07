@@ -16,7 +16,8 @@
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
+    "strictInjectionParameters": true,
+    "enableIvy": false
   },
   "paths": {
     "@component/*": ["src/app/component/*"],

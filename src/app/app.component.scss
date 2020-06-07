@@ -1,56 +1,35 @@
 :host {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-size: 14px;
-  color: #333;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  nz-layout {
+    nz-header,
+    nz-footer {
+      background: rgba(16, 142, 233, 1);
+      color: #fff;
+    }
 
-.spacer {
-  flex: 1;
-}
+    nz-header {
+      position: fixed;
+      width: 100%;
+    }
 
-.form {
-  margin-bottom: 20px;
+    nz-content {
+      height: 100vh;
 
-  label {
-    margin-bottom: 5px;
+      padding-top: 64px;
+      padding-bottom: 73px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    nz-footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+
+      #github-icon {
+        width: 25px;
+        height: 25px;
+      }
+    }
   }
-}
-
-.toolbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  background-color: #1976d2;
-  color: white;
-  font-weight: 600;
-
-  span {
-    margin-left: 10px;
-  }
-}
-
-.toolbar #github-icon {
-  height: 40px;
-  margin: 0 16px;
-}
-
-.toolbar #github-icon:hover {
-  opacity: 0.8;
-}
-
-.content {
-  display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
-  flex-direction: column;
-  align-items: center;
 }

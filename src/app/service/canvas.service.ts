@@ -12,11 +12,12 @@ export class CanvasService {
    * @param ctx
    * @param bgColor
    */
-  clearCtx(ctx: CanvasRenderingContext2D, bgColor: string) {
-    const { clientWidth, clientHeight } = ctx.canvas;
+  clearCtx(ctx: CanvasRenderingContext2D, w: number, h: number, bgColor: string) {
+    ctx.canvas.width = w;
+    ctx.canvas.height = h;
     ctx.fillStyle = bgColor || '#FF4C00';
     ctx.beginPath();
-    ctx.fillRect(0, 0, clientWidth, clientHeight);
+    ctx.fillRect(0, 0, w, h);
     ctx.closePath();
   }
 
