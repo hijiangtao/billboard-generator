@@ -123,7 +123,7 @@ export class CanvasService {
     y: number,
     w: number,
     h: number,
-    callback?: () => void
+    callback?: (_s: any) => void
   ) {
     let img = new Image();
     img.crossOrigin = 'Anonymous';
@@ -135,7 +135,7 @@ export class CanvasService {
         URL.revokeObjectURL(file);
       } catch (error) {}
 
-      callback();
+      callback(img);
     };
     img.onerror = (err) => {
       console.error(err);
