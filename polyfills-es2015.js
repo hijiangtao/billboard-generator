@@ -3026,7 +3026,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2:
+/***/ 5:
 /*!********************************!*\
   !*** multi ./src/polyfills.ts ***!
   \********************************/
@@ -3038,5 +3038,5 @@ module.exports = __webpack_require__(/*! /Users/hijiangtao/Documents/git/study/c
 
 /***/ })
 
-},[[2,"runtime"]]]);
+},[[5,"runtime"]]]);
 //# sourceMappingURL=polyfills-es2015.js.map
