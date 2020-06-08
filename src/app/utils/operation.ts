@@ -41,3 +41,41 @@ export const getImageThemeColor = (imgEl: HTMLImageElement) => {
 
   return rgb;
 };
+
+const rgbToHex = (rgb) => {
+  var hex = Number(rgb).toString(16);
+  if (hex.length < 2) {
+    hex = '0' + hex;
+  }
+  return hex;
+};
+
+/**
+ * rgb to hex 转换
+ * @param rgb
+ */
+export const fullColorHex = (rgb) => {
+  const { r, g, b } = rgb;
+  const red = rgbToHex(r);
+  const green = rgbToHex(g);
+  const blue = rgbToHex(b);
+  return '#' + red + green + blue;
+};
+
+/**
+ * 复制文本
+ * @param id
+ */
+export const copyText = (id) => {
+  const rgb = document.getElementById(id).innerText;
+  const oInput =
+    (document.getElementById('copy-text-container') as HTMLInputElement) || document.createElement('input');
+  oInput.id = 'copy-text-container';
+  oInput.value = rgb;
+  document.body.appendChild(oInput);
+
+  oInput.select(); // 选择对象
+  document.execCommand('Copy'); // 执行浏览器复制命令
+
+  oInput.style.display = 'none';
+};

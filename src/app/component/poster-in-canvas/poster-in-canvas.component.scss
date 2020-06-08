@@ -6,5 +6,15 @@
       overflow-y: scroll;
       height: 100%;
     }
+
+    .theme-img {
+      margin-left: 0.5rem;
+      width: 4.5rem;
+      height: auto;
+    }
+
+    #imgThemeColor {
+      cursor: pointer;
+    }
   }
 }

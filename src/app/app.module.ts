@@ -21,6 +21,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 registerLocaleData(zh);
 
@@ -40,6 +42,8 @@ registerLocaleData(zh);
     NzFormModule,
     NzGridModule,
     NzLayoutModule,
+    NzTagModule,
+    NzToolTipModule,
     NzUploadModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
