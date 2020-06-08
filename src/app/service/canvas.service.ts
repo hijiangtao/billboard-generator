@@ -29,7 +29,7 @@ export class CanvasService {
     const canvas = document.createElement('canvas');
     canvas.width = img.width;
     canvas.height = img.height;
-    let ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
 
     ctx.drawImage(img, 0, 0);
 
@@ -65,9 +65,9 @@ export class CanvasService {
       const words = line.split('');
 
       for (let n = 0; n < words.length; n++) {
-        let testLine = linetext + words[n];
-        let metrics = context.measureText(testLine);
-        let testWidth = metrics.width;
+        const testLine = linetext + words[n];
+        const metrics = context.measureText(testLine);
+        const testWidth = metrics.width;
         if (testWidth > maxWidth && n > 0) {
           context.fillText(linetext, x, y);
           linetext = words[n];
@@ -125,7 +125,7 @@ export class CanvasService {
     h: number,
     callback?: (_s: any) => void
   ) {
-    let img = new Image();
+    const img = new Image();
     img.crossOrigin = 'Anonymous';
 
     img.onload = () => {

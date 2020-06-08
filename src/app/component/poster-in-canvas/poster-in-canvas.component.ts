@@ -59,7 +59,7 @@ export class PosterInCanvasComponent implements OnInit {
   constructor(private fb: FormBuilder, private cdRef: ChangeDetectorRef, private sanitizer: DomSanitizer) {}
 
   updateStore(val) {
-    let formDataValue = {
+    const formDataValue = {
       ...this.billboardData$.value,
       ...val,
     };
@@ -74,12 +74,12 @@ export class PosterInCanvasComponent implements OnInit {
   }
 
   addImageFile(id = 'logoPathInput', event: { target?: any } = {}): void {
-    let fi = event.target || this[id].nativeElement;
+    const fi = event.target || this[id].nativeElement;
     if (fi.files && fi.files[0]) {
-      let fileToUpload = fi.files[0];
+      const fileToUpload = fi.files[0];
       const storeKey = id.replace('Input', '');
 
-      let myReader: FileReader = new FileReader();
+      const myReader: FileReader = new FileReader();
       myReader.onloadend = (loadEvent: any) => {
         let result = loadEvent.target.result;
         if (id === 'themeColorInput') {

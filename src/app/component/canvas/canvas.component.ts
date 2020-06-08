@@ -21,6 +21,7 @@ interface BillboardConfig {
   styleUrls: ['./canvas.component.scss'],
 })
 export class CanvasComponent implements OnInit, AfterViewInit {
+  // tslint:disable-next-line: variable-name
   _data: any;
 
   CANVAS_WIDTH = 750;
@@ -43,7 +44,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   }
 
   @Output()
-  onImageChange = new EventEmitter<string | null>();
+  imageChange = new EventEmitter<string | null>();
 
   @ViewChild('canvasEle', { static: false }) myCanvas: ElementRef;
   public context: CanvasRenderingContext2D;
@@ -54,7 +55,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   constructor(private cs: CanvasService) {}
 
   ngOnInit(): void {
-    this.dataUrl$.subscribe((url) => this.onImageChange.emit(url));
+    this.dataUrl$.subscribe((url) => this.imageChange.emit(url));
   }
 
   ngAfterViewInit(): void {
@@ -162,7 +163,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       this.updateDataUrl(this.canvas.toDataURL());
     } catch (error) {
       console.error(`[error] ${JSON.stringify(error)}`);
-      this.onImageChange.emit(null);
+      this.imageChange.emit(null);
     }
   }
 }
