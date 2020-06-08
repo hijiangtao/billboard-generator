@@ -69,6 +69,21 @@ export const fullColorHex = (rgb: { r: any; g: any; b: any }) => {
 };
 
 /**
+ * hex to rgb 转换
+ * @param hex hex color 字符串
+ */
+export const hexToRgb = (hex: string) => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+};
+
+/**
  * 复制文本
  * @param id DOM ID
  */
@@ -84,4 +99,21 @@ export const copyText = (id: string) => {
   document.execCommand('Copy'); // 执行浏览器复制命令
 
   oInput.style.display = 'none';
+};
+
+/**
+ * 计算颜色深浅
+ * @param color 支持 rgb 对象和 hex 字符串
+ */
+export const calcColorType = (color): number => {
+  const rgb = color.r && color.g && color.b ? color : hexToRgb(color);
+  const { r, g, b } = rgb;
+
+  if (r * 0.299 + g * 0.578 + b * 0.114 >= 192) {
+    // 浅色
+    return 0;
+  } else {
+    // 深色
+    return 1;
+  }
 };

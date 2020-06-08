@@ -12,6 +12,7 @@ interface BillboardConfig {
   topics?: string;
   description?: string;
   bgColor: string;
+  textColors?: string;
   logoPath?: string | null;
 }
 
@@ -73,11 +74,12 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   }
 
   renderBillboard(val) {
-    const { title, organization, time, address, vol, bgColor, topics, description, logoPath } = val;
+    const { title, organization, time, address, vol, bgColor, topics, description, logoPath, textColors } = val;
+    const [mainContentColor, tagsColor, volColor] = textColors;
 
     const commonConfig: TextConfig = {
       size: 20,
-      color: '#fff',
+      color: mainContentColor,
       font: 'bold 20px sans-serif',
       textAlign: 'left',
       textBaseline: 'middle',
@@ -110,7 +112,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     this.cs.fillText(this.context, organization, commonStyle.marginLeft, 320, {
       ...commonConfig,
       size: 50,
-      color: '#eee',
+      color: mainContentColor,
     });
 
     if (topics) {
@@ -122,6 +124,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         this.cs.fillText(this.context, `- ${topic}`, commonStyle.marginLeft, topicY, {
           ...commonConfig,
           size: commonStyle.topicLineheight / 2,
+          color: mainContentColor,
         });
       });
     }
@@ -140,22 +143,24 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     this.cs.fillText(this.context, time, commonStyle.marginLeft, this.CANVAS_HEIGHT - 80, {
       ...commonConfig,
       size: 20,
-      color: '#000',
+      color: tagsColor,
     });
 
     this.cs.fillText(this.context, address, commonStyle.marginLeft, this.CANVAS_HEIGHT - 40, {
       ...commonConfig,
       size: 20,
-      color: '#000',
+      color: tagsColor,
     });
 
     const volTextMarginRight = this.CANVAS_WIDTH - commonStyle.marginRight - this.LOGO_SIZE - commonStyle.marginRight;
     const volTextMarginTop = commonStyle.marginRight + this.LOGO_SIZE / 2;
     const volFontsize = 20;
+
+    //
     this.cs.fillText(this.context, vol, volTextMarginRight, volTextMarginTop, {
       ...commonConfig,
       size: volFontsize,
-      color: '#f4ea2a',
+      color: volColor,
       textAlign: 'right',
     });
 

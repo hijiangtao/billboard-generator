@@ -70,7 +70,7 @@
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item *ngIf="billboardData$ | async as billboardData">
-                        <nz-form-label [nzSpan]="6" nzFor="themeColor" nzRequired>Description</nz-form-label>
+                        <nz-form-label [nzSpan]="6" nzFor="themeColor">Extract from Pic</nz-form-label>
                         <nz-form-control [nzSpan]="6">
                             <input #themeColorInput nz-input accept="image/png" type="file"
                                 (change)="addImageFile('themeColorInput', $event)">

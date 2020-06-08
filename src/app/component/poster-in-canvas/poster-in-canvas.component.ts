@@ -2,8 +2,13 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef, HostListener } from '@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { getImageThemeColor, fullColorHex, copyText } from '../../utils/operation';
+import { getImageThemeColor, fullColorHex, copyText, calcColorType } from '../../utils/operation';
 import { DomSanitizer } from '@angular/platform-browser';
+
+const COLOR_THEMES_CONFIG = {
+  dark: ['#000', '#333', '#ec0007'],
+  light: ['#fff', '#ccc', '#f4ea2a'],
+};
 
 const BILLBOARD_INIT_DATA = {
   title: '分享会主题名称',
@@ -16,6 +21,7 @@ const BILLBOARD_INIT_DATA = {
   bgColor: '#FF4C00',
   description:
     '这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述',
+  textColors: COLOR_THEMES_CONFIG.light,
 };
 
 @Component({
@@ -36,15 +42,16 @@ export class PosterInCanvasComponent implements OnInit {
   });
 
   billboardData$: BehaviorSubject<{
-    themeColor?: string;
+    themeColor?: string; // 主题色
     title?: string;
     oranization?: string;
     time?: string;
     address?: string;
     vol?: string;
     topics?: string;
-    bgColor?: string;
+    bgColor?: string; // 背景色
     description?: string;
+    textColors?: string[]; // 文字主色调
   }> = new BehaviorSubject(BILLBOARD_INIT_DATA);
 
   imgUrl$: BehaviorSubject<string | null> = new BehaviorSubject(null);
@@ -71,6 +78,15 @@ export class PosterInCanvasComponent implements OnInit {
     this.billboardForm.valueChanges
       .pipe(distinctUntilChanged(), debounceTime(300))
       .subscribe((value) => this.updateStore(value));
+
+    this.billboardData$.pipe(distinctUntilChanged((a, b) => a.bgColor === b.bgColor)).subscribe((billboardData) => {
+      const { bgColor } = billboardData;
+      const textColors = calcColorType(bgColor) ? COLOR_THEMES_CONFIG.light : COLOR_THEMES_CONFIG.dark;
+      this.billboardData$.next({
+        ...this.billboardData$.value,
+        textColors,
+      });
+    });
   }
 
   addImageFile(id = 'logoPathInput', event: { target?: any } = {}): void {
