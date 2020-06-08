@@ -101,7 +101,8 @@
         </div>
         <div nz-col nzSpan="9">
             <nz-card nzTitle="预览图">
-                <app-canvas [info]="billboardData$ | async" (imageChange)="onImageChange($event)"></app-canvas>
+                <app-pure-canvas [info]="billboardData$ | async" (imageChange)="onImageChange($event)">
+                </app-pure-canvas>
             </nz-card>
         </div>
     </div>

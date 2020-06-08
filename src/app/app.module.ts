@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CanvasComponent } from './component/canvas/canvas.component';
+import { PureCanvasComponent } from './component/pure-canvas/pure-canvas.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PosterInCanvasComponent } from './component/poster-in-canvas/poster-in-canvas.component';
@@ -23,11 +23,19 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { PosterInFabricComponent } from './component/poster-in-fabric/poster-in-fabric.component';
+import { FabricCanvasComponent } from './component/fabric-canvas/fabric-canvas.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [AppComponent, CanvasComponent, PosterInCanvasComponent],
+  declarations: [
+    AppComponent,
+    PureCanvasComponent,
+    PosterInCanvasComponent,
+    PosterInFabricComponent,
+    FabricCanvasComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

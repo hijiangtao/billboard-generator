@@ -22,6 +22,7 @@
   "paths": {
     "@component/*": ["src/app/component/*"],
     "@service/*": ["src/app/service/*"],
-    "@data/*": ["src/app/data/*"]
+    "@data/*": ["src/app/data/*"],
+    "@utils/*": ["src/app/utils/*"]
   }
 }

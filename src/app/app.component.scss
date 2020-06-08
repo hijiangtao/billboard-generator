@@ -14,10 +14,13 @@
     nz-content {
       height: 100vh;
 
-      padding-top: 64px;
-      padding-bottom: 73px;
+      padding: 94px 30px 103px 30px;
       box-sizing: border-box;
       overflow: hidden;
+
+      div {
+        background-color: #fff;
+      }
     }
 
     nz-footer {

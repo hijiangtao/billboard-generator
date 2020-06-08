@@ -17,11 +17,11 @@ interface BillboardConfig {
 }
 
 @Component({
-  selector: 'app-canvas',
-  templateUrl: './canvas.component.html',
-  styleUrls: ['./canvas.component.scss'],
+  selector: 'app-pure-canvas',
+  templateUrl: './pure-canvas.component.html',
+  styleUrls: ['./pure-canvas.component.scss'],
 })
-export class CanvasComponent implements OnInit, AfterViewInit {
+export class PureCanvasComponent implements OnInit, AfterViewInit {
   // tslint:disable-next-line: variable-name
   _data: any;
 
