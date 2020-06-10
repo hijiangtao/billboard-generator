@@ -1,11 +1,34 @@
 <ng-container>
     <div class="inner-content" nz-row>
         <div nz-col nzSpan="15">
-            <p>Try it by yourself!</p>
+            <!-- form -->
+            <nz-card nzTitle="海报配置">
+                <nz-form-item>右边的所有元素都是可以点击、拖拽、旋转、移动的</nz-form-item>
+                <nz-form-item class="border-item">
+                    <nz-form-label [nzSpan]="6" nzFor="poster-logo">LOGO</nz-form-label>
+                    <nz-form-control [nzSpan]="8">
+                        <input #logoPathInput nz-input type="file" id="poster-logo" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="8" [nzOffset]="6">
+                        <button nz-button nzType="primary" (click)="addLogo()">
+                            <i nz-icon nzType="upload"></i>添加 Logo
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item class="border-item">
+                    <nz-form-control [nzSpan]="8" [nzOffset]="6">
+                        <button nz-button nzType="primary" (click)="savePoster()">
+                            保存海报
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+            </nz-card>
         </div>
         <div nz-col nzSpan="9">
             <nz-card nzTitle="预览图">
-                <app-fabric-canvas></app-fabric-canvas>
+                <app-fabric-canvas #childCanvas [logo]="logoUrl$ | async"></app-fabric-canvas>
             </nz-card>
         </div>
     </div>

@@ -9,6 +9,25 @@
     nz-header {
       position: fixed;
       width: 100%;
+
+      .logo {
+        font-size: 31px;
+        line-height: 64px;
+        padding: 0 30px;
+        float: left;
+      }
+
+      .header-menu {
+        line-height: 62px;
+        background: rgba(16, 142, 233, 1);
+      }
+
+      li a {
+        color: #fff;
+      }
+      li a:hover {
+        color: greenyellow;
+      }
     }
 
     nz-content {

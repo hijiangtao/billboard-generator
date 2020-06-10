@@ -1,7 +1,6 @@
 :host {
   .inner-content {
     background: #fff;
-    padding: 24px;
     height: 100%;
     box-sizing: border-box;
 
@@ -12,6 +11,11 @@
         overflow-y: scroll;
         height: 100%;
       }
+    }
+
+    .border-item {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 24px;
     }
   }
 }

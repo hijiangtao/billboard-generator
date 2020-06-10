@@ -1,6 +1,11 @@
 <nz-layout>
   <nz-header>
-    <h1>{{ title }}</h1>
+    <span class="logo">{{ title }}</span>
+    <ul nz-menu nzMode="horizontal" class="header-menu">
+      <li nz-menu-item><a routerLink="/poster-in-canvas" routerLinkActive="active">绘制海报</a>
+      </li>
+      <li nz-menu-item><a routerLink="/poster-in-fabric" routerLinkActive="active">绘制实验</a></li>
+    </ul>
   </nz-header>
   <nz-content>
     <router-outlet></router-outlet>
