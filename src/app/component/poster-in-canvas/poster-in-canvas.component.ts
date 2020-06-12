@@ -15,7 +15,7 @@ const BILLBOARD_INIT_DATA = {
   organization: '服务平台前端小组',
   time: '2020年1月1日',
   address: '北京·阜通·608会议室',
-  vol: 'Vol.X / 第X期',
+  vol: 'X',
   topics:
     '新人介绍与欢迎环节 (5min)\n经验与疑问分享 (10min)\n技术前沿讯息分享 (5-10min)\n主题分享 (20-35min)\n其他环节 (TBD)',
   bgColor: '#FF4C00',

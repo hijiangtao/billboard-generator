@@ -106,7 +106,7 @@ export class PureCanvasComponent implements OnInit, AfterViewInit {
 
     this.cs.fillText(this.context, title, commonStyle.marginLeft, 230, {
       ...commonConfig,
-      size: 82,
+      size: Math.min(580 / (title.length || 7), 82),
     });
 
     this.cs.fillText(this.context, organization, commonStyle.marginLeft, 320, {
@@ -157,7 +157,8 @@ export class PureCanvasComponent implements OnInit, AfterViewInit {
     const volFontsize = 20;
 
     //
-    this.cs.fillText(this.context, vol, volTextMarginRight, volTextMarginTop, {
+    const volContent = `Vol.${vol} / 第${vol}期`;
+    this.cs.fillText(this.context, volContent, volTextMarginRight, volTextMarginTop, {
       ...commonConfig,
       size: volFontsize,
       color: volColor,
