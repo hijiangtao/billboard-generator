@@ -711,7 +711,7 @@ const BILLBOARD_INIT_DATA = {
     organization: '服务平台前端小组',
     time: '2020年1月1日',
     address: '北京·阜通·608会议室',
-    vol: 'Vol.X / 第X期',
+    vol: 'X',
     topics: '新人介绍与欢迎环节 (5min)\n经验与疑问分享 (10min)\n技术前沿讯息分享 (5-10min)\n主题分享 (20-35min)\n其他环节 (TBD)',
     bgColor: '#FF4C00',
     description: '这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述',
@@ -1073,7 +1073,7 @@ class PureCanvasComponent {
         this.cs.drawImage(this.context, realLogo, this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight, this.LOGO_SIZE, this.LOGO_SIZE, () => {
             this.updateDataUrl(this.canvas.toDataURL());
         });
-        this.cs.fillText(this.context, title, commonStyle.marginLeft, 230, Object.assign(Object.assign({}, commonConfig), { size: 82 }));
+        this.cs.fillText(this.context, title, commonStyle.marginLeft, 230, Object.assign(Object.assign({}, commonConfig), { size: Math.min(580 / (title.length || 7), 82) }));
         this.cs.fillText(this.context, organization, commonStyle.marginLeft, 320, Object.assign(Object.assign({}, commonConfig), { size: 50, color: mainContentColor }));
         if (topics) {
             const topicList = topics.split('\n');
@@ -1091,7 +1091,8 @@ class PureCanvasComponent {
         const volTextMarginTop = commonStyle.marginRight + this.LOGO_SIZE / 2;
         const volFontsize = 20;
         //
-        this.cs.fillText(this.context, vol, volTextMarginRight, volTextMarginTop, Object.assign(Object.assign({}, commonConfig), { size: volFontsize, color: volColor, textAlign: 'right' }));
+        const volContent = `Vol.${vol} / 第${vol}期`;
+        this.cs.fillText(this.context, volContent, volTextMarginRight, volTextMarginTop, Object.assign(Object.assign({}, commonConfig), { size: volFontsize, color: volColor, textAlign: 'right' }));
         try {
             this.updateDataUrl(this.canvas.toDataURL());
         }
