@@ -1047,8 +1047,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngAfterViewInit",
         value: function ngAfterViewInit() {
-          console.log(fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].version);
-          console.log(this.canvasEle);
           this.canvas = new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Canvas(this.canvasEle.nativeElement, {
             selection: true,
             backgroundColor: '#FF4C00',
@@ -1072,6 +1070,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             top: 150,
             fill: '#fff'
           }));
+          this.canvas.add(new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].IText('Vol.X / 第X期', {
+            left: this.CANVAS_WIDTH - 120,
+            top: 20,
+            fill: '#fff',
+            fontSize: 15
+          }));
           this.canvas.add(new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].IText('- 分享环节1', {
             left: 50,
             top: 350,
@@ -1090,18 +1094,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             fill: '#fff',
             fontSize: 30
           }));
-          this.canvas.add(new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].IText('- 分享环节3', {
+          this.canvas.add(new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].IText('- 分享环节4', {
             left: 50,
-            top: 450,
+            top: 500,
             fill: '#fff',
             fontSize: 30
           }));
           this.canvas.add(new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].Textbox('这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述', {
             left: 50,
-            top: 550,
+            top: 580,
             fill: '#fff',
             fontSize: 20,
-            width: 500,
+            width: this.CANVAS_WIDTH - 100,
             splitByGrapheme: true
           }));
           this.canvas.add(new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].IText('2020年1月1日18:00', {
@@ -1124,6 +1128,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }));
         }
       }, {
+        key: "deleteSelections",
+
+        /**
+         * 删除选中元素
+         */
+        value: function deleteSelections() {
+          this.canvas.remove(this.selection);
+        }
+        /**
+         * 添加元素
+         * Todo - 不同类型元素待支持
+         */
+
+      }, {
+        key: "addObject",
+        value: function addObject() {
+          var ele = new fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].IText('测试文案', {
+            left: Math.random() * (this.CANVAS_WIDTH - 30),
+            top: Math.random() * (this.CANVAS_HEIGHT - 30),
+            fill: '#fff'
+          });
+          this.canvas.add(ele);
+        }
+      }, {
         key: "updateCanvasLogo",
         value: function updateCanvasLogo(val) {
           var imgEl = fabric__WEBPACK_IMPORTED_MODULE_0__["fabric"].util.createImage();
@@ -1144,6 +1172,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this._logo = val;
             this.updateCanvasLogo(val);
           }
+        }
+      }, {
+        key: "selection",
+        get: function get() {
+          return this.canvas.getActiveObject();
         }
       }]);
 
@@ -3388,15 +3421,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         logoPathInput: 0
       }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](671088640, 2, {
         childCanvas: 0
-      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 63, null, null, null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 62, "div", [["class", "inner-content"], ["nz-row", ""]], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 51, "div", [["nz-col", ""], ["nzSpan", "15"]], [[4, "flex", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](2, 0, null, null, 89, null, null, null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 88, "div", [["class", "inner-content"], ["nz-row", ""]], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](4, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](5, 0, null, null, 77, "div", [["nz-col", ""], ["nzSpan", "15"]], [[4, "flex", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](6, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
         nzSpan: [0, "nzSpan"]
-      }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 49, "nz-card", [["nzTitle", "\u6D77\u62A5\u914D\u7F6E"]], [[2, "ant-card", null], [2, "ant-card-loading", null], [2, "ant-card-bordered", null], [2, "ant-card-hoverable", null], [2, "ant-card-small", null], [2, "ant-card-contain-grid", null], [2, "ant-card-type-inner", null], [2, "ant-card-contain-tabs", null]], null, null, _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_NzCardComponent_0"], _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_NzCardComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 180224, null, 2, ng_zorro_antd_card__WEBPACK_IMPORTED_MODULE_7__["NzCardComponent"], [ng_zorro_antd_core_config__WEBPACK_IMPORTED_MODULE_8__["NzConfigService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], {
+      }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](7, 0, null, null, 75, "nz-card", [["nzTitle", "\u6D77\u62A5\u914D\u7F6E"]], [[2, "ant-card", null], [2, "ant-card-loading", null], [2, "ant-card-bordered", null], [2, "ant-card-hoverable", null], [2, "ant-card-small", null], [2, "ant-card-contain-grid", null], [2, "ant-card-type-inner", null], [2, "ant-card-contain-tabs", null]], null, null, _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_NzCardComponent_0"], _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_NzCardComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](8, 180224, null, 2, ng_zorro_antd_card__WEBPACK_IMPORTED_MODULE_7__["NzCardComponent"], [ng_zorro_antd_core_config__WEBPACK_IMPORTED_MODULE_8__["NzConfigService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], {
         nzTitle: [0, "nzTitle"]
       }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 3, {
         listOfNzCardTabComponent: 0
       }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 4, {
         listOfNzCardGridDirective: 1
-      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, 0, 3, "nz-form-item", [], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, ["\u53F3\u8FB9\u7684\u6240\u6709\u5143\u7D20\u90FD\u662F\u53EF\u4EE5\u70B9\u51FB\u3001\u62D6\u62FD\u3001\u65CB\u8F6C\u3001\u79FB\u52A8\u7684"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 12, "nz-form-item", [["class", "border-item"]], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](17, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, 0, 3, "nz-form-label", [["nzFor", "poster-logo"]], [[4, "flex", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormLabelComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormLabelComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](11, 0, null, 0, 3, "nz-form-item", [], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](12, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](13, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, ["\u53F3\u8FB9\u7684\u6240\u6709\u5143\u7D20\u90FD\u662F\u53EF\u4EE5\u70B9\u51FB\u3001\u62D6\u62FD\u3001\u65CB\u8F6C\u3001\u79FB\u52A8\u548C\u7F16\u8F91\u5185\u5BB9\u7684"])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](15, 0, null, 0, 12, "nz-form-item", [["class", "border-item"]], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](16, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](17, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](18, 0, null, 0, 3, "nz-form-label", [["nzFor", "poster-logo"]], [[4, "flex", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormLabelComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormLabelComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](19, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
         nzSpan: [0, "nzSpan"]
       }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](20, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormLabelComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], [3, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormDirective"]]], {
         nzFor: [0, "nzFor"]
@@ -3430,7 +3463,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         nzIconDirectiveElement: 0
       }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](40, 0, [[7, 0]], 0, 2, "i", [["nz-icon", ""], ["nzType", "upload"]], [[2, "anticon", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](41, 4734976, null, 0, ng_zorro_antd_core_transition_patch__WEBPACK_IMPORTED_MODULE_14__["ɵNzTransitionPatchDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](42, 2703360, null, 0, ng_zorro_antd_icon__WEBPACK_IMPORTED_MODULE_18__["NzIconDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], ng_zorro_antd_icon__WEBPACK_IMPORTED_MODULE_18__["NzIconService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], [2, ng_zorro_antd_icon__WEBPACK_IMPORTED_MODULE_18__["NzIconPatchService"]]], {
         nzType: [0, "nzType"]
-      }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, ["\u6DFB\u52A0 Logo "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](44, 0, null, 0, 12, "nz-form-item", [["class", "border-item"]], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](45, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](46, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](47, 0, null, 0, 9, "nz-form-control", [], [[4, "flex", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormControlComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormControlComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](48, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
+      }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, ["\u6DFB\u52A0 Logo "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](44, 0, null, 0, 12, "nz-form-item", [], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](45, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](46, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](47, 0, null, 0, 9, "nz-form-control", [], [[4, "flex", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormControlComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormControlComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](48, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
         nzSpan: [0, "nzSpan"],
         nzOffset: [1, "nzOffset"]
       }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](49, 1818624, null, 1, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormControlComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], ng_zorro_antd_i18n__WEBPACK_IMPORTED_MODULE_11__["NzI18nService"], [8, null]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 8, {
@@ -3445,7 +3478,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
 
         if ("click" === en) {
-          var pd_1 = _co.savePoster() !== false;
+          var pd_1 = _co.deleteSelection() !== false;
           ad = pd_1 && ad;
         }
 
@@ -3454,15 +3487,63 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         nzType: [0, "nzType"]
       }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 9, {
         nzIconDirectiveElement: 0
-      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" \u4FDD\u5B58\u6D77\u62A5 "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](57, 0, null, null, 8, "div", [["nz-col", ""], ["nzSpan", "9"]], [[4, "flex", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](58, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" \u5220\u9664\u9009\u4E2D\u5143\u7D20 "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](57, 0, null, 0, 12, "nz-form-item", [], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](58, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](59, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](60, 0, null, 0, 9, "nz-form-control", [], [[4, "flex", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormControlComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormControlComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](61, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
+        nzSpan: [0, "nzSpan"],
+        nzOffset: [1, "nzOffset"]
+      }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](62, 1818624, null, 1, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormControlComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], ng_zorro_antd_i18n__WEBPACK_IMPORTED_MODULE_11__["NzI18nService"], [8, null]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 10, {
+        defaultValidateControl: 0
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](64, 0, null, 0, 5, "button", [["nz-button", ""], ["nzType", "primary"]], [[2, "ant-btn", null], [2, "ant-btn-primary", null], [2, "ant-btn-dashed", null], [2, "ant-btn-link", null], [2, "ant-btn-danger", null], [2, "ant-btn-circle", null], [2, "ant-btn-round", null], [2, "ant-btn-lg", null], [2, "ant-btn-sm", null], [2, "ant-btn-dangerous", null], [2, "ant-btn-loading", null], [2, "ant-btn-background-ghost", null], [2, "ant-btn-block", null], [2, "ant-input-search-button", null], [1, "tabindex", 0], [1, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
+        var ad = true;
+        var _co = _v.component;
+
+        if ("click" === en) {
+          var pd_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).haltDisabledEvents($event) !== false;
+          ad = pd_0 && ad;
+        }
+
+        if ("click" === en) {
+          var pd_1 = _co.addTextItem() !== false;
+          ad = pd_1 && ad;
+        }
+
+        return ad;
+      }, _node_modules_ng_zorro_antd_button_ng_zorro_antd_button_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_NzButtonComponent_0"], _node_modules_ng_zorro_antd_button_ng_zorro_antd_button_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_NzButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](65, 4734976, null, 0, ng_zorro_antd_core_transition_patch__WEBPACK_IMPORTED_MODULE_14__["ɵNzTransitionPatchDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](66, 212992, null, 0, ng_zorro_antd_core_wave__WEBPACK_IMPORTED_MODULE_15__["NzWaveDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_core_wave__WEBPACK_IMPORTED_MODULE_15__["NZ_WAVE_GLOBAL_CONFIG"]], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](67, 5947392, null, 1, ng_zorro_antd_button__WEBPACK_IMPORTED_MODULE_17__["NzButtonComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], ng_zorro_antd_core_config__WEBPACK_IMPORTED_MODULE_8__["NzConfigService"]], {
+        nzType: [0, "nzType"]
+      }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 11, {
+        nzIconDirectiveElement: 0
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" \u6DFB\u52A0\u6587\u5B57 "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](70, 0, null, 0, 12, "nz-form-item", [["class", "border-item"]], [[2, "ant-row", null], [2, "ant-row-top", null], [2, "ant-row-middle", null], [2, "ant-row-bottom", null], [2, "ant-row-start", null], [2, "ant-row-end", null], [2, "ant-row-center", null], [2, "ant-row-space-around", null], [2, "ant-row-space-between", null], [2, "ant-form-item-has-success", null], [2, "ant-form-item-has-warning", null], [2, "ant-form-item-has-error", null], [2, "ant-form-item-is-validating", null], [2, "ant-form-item-has-feedback", null], [2, "ant-form-item-with-help", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormItemComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormItemComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](71, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_3__["MediaMatcher"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_4__["Platform"], ng_zorro_antd_core_services__WEBPACK_IMPORTED_MODULE_5__["NzBreakpointService"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](72, 180224, null, 0, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], null, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](73, 0, null, 0, 9, "nz-form-control", [], [[4, "flex", null]], null, null, _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["View_NzFormControlComponent_0"], _node_modules_ng_zorro_antd_form_ng_zorro_antd_form_ngfactory__WEBPACK_IMPORTED_MODULE_9__["RenderType_NzFormControlComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](74, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
+        nzSpan: [0, "nzSpan"],
+        nzOffset: [1, "nzOffset"]
+      }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](75, 1818624, null, 1, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormControlComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_form__WEBPACK_IMPORTED_MODULE_10__["NzFormItemComponent"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], ng_zorro_antd_i18n__WEBPACK_IMPORTED_MODULE_11__["NzI18nService"], [8, null]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 12, {
+        defaultValidateControl: 0
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](77, 0, null, 0, 5, "button", [["nz-button", ""], ["nzType", "primary"]], [[2, "ant-btn", null], [2, "ant-btn-primary", null], [2, "ant-btn-dashed", null], [2, "ant-btn-link", null], [2, "ant-btn-danger", null], [2, "ant-btn-circle", null], [2, "ant-btn-round", null], [2, "ant-btn-lg", null], [2, "ant-btn-sm", null], [2, "ant-btn-dangerous", null], [2, "ant-btn-loading", null], [2, "ant-btn-background-ghost", null], [2, "ant-btn-block", null], [2, "ant-input-search-button", null], [1, "tabindex", 0], [1, "disabled", 0]], [[null, "click"]], function (_v, en, $event) {
+        var ad = true;
+        var _co = _v.component;
+
+        if ("click" === en) {
+          var pd_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).haltDisabledEvents($event) !== false;
+          ad = pd_0 && ad;
+        }
+
+        if ("click" === en) {
+          var pd_1 = _co.savePoster() !== false;
+          ad = pd_1 && ad;
+        }
+
+        return ad;
+      }, _node_modules_ng_zorro_antd_button_ng_zorro_antd_button_ngfactory__WEBPACK_IMPORTED_MODULE_13__["View_NzButtonComponent_0"], _node_modules_ng_zorro_antd_button_ng_zorro_antd_button_ngfactory__WEBPACK_IMPORTED_MODULE_13__["RenderType_NzButtonComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](78, 4734976, null, 0, ng_zorro_antd_core_transition_patch__WEBPACK_IMPORTED_MODULE_14__["ɵNzTransitionPatchDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](79, 212992, null, 0, ng_zorro_antd_core_wave__WEBPACK_IMPORTED_MODULE_15__["NzWaveDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_core_wave__WEBPACK_IMPORTED_MODULE_15__["NZ_WAVE_GLOBAL_CONFIG"]], [2, _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__["ANIMATION_MODULE_TYPE"]]], null, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](80, 5947392, null, 1, ng_zorro_antd_button__WEBPACK_IMPORTED_MODULE_17__["NzButtonComponent"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], ng_zorro_antd_core_config__WEBPACK_IMPORTED_MODULE_8__["NzConfigService"]], {
+        nzType: [0, "nzType"]
+      }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 13, {
+        nzIconDirectiveElement: 0
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, 0, [" \u4FDD\u5B58\u6D77\u62A5 "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](83, 0, null, null, 8, "div", [["nz-col", ""], ["nzSpan", "9"]], [[4, "flex", null]], null, null, null, null)), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](84, 4931584, null, 0, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzColDirective"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"], [2, ng_zorro_antd_grid__WEBPACK_IMPORTED_MODULE_2__["NzRowDirective"]], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]], {
         nzSpan: [0, "nzSpan"]
-      }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](59, 0, null, null, 6, "nz-card", [["nzTitle", "\u9884\u89C8\u56FE"]], [[2, "ant-card", null], [2, "ant-card-loading", null], [2, "ant-card-bordered", null], [2, "ant-card-hoverable", null], [2, "ant-card-small", null], [2, "ant-card-contain-grid", null], [2, "ant-card-type-inner", null], [2, "ant-card-contain-tabs", null]], null, null, _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_NzCardComponent_0"], _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_NzCardComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](60, 180224, null, 2, ng_zorro_antd_card__WEBPACK_IMPORTED_MODULE_7__["NzCardComponent"], [ng_zorro_antd_core_config__WEBPACK_IMPORTED_MODULE_8__["NzConfigService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], {
+      }, null), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](85, 0, null, null, 6, "nz-card", [["nzTitle", "\u9884\u89C8\u56FE"]], [[2, "ant-card", null], [2, "ant-card-loading", null], [2, "ant-card-bordered", null], [2, "ant-card-hoverable", null], [2, "ant-card-small", null], [2, "ant-card-contain-grid", null], [2, "ant-card-type-inner", null], [2, "ant-card-contain-tabs", null]], null, null, _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["View_NzCardComponent_0"], _node_modules_ng_zorro_antd_card_ng_zorro_antd_card_ngfactory__WEBPACK_IMPORTED_MODULE_6__["RenderType_NzCardComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](86, 180224, null, 2, ng_zorro_antd_card__WEBPACK_IMPORTED_MODULE_7__["NzCardComponent"], [ng_zorro_antd_core_config__WEBPACK_IMPORTED_MODULE_8__["NzConfigService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]], {
         nzTitle: [0, "nzTitle"]
-      }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 10, {
+      }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 14, {
         listOfNzCardTabComponent: 0
-      }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 11, {
+      }), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵqud"](603979776, 15, {
         listOfNzCardGridDirective: 1
-      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](63, 0, null, 0, 2, "app-fabric-canvas", [], null, null, null, _fabric_canvas_fabric_canvas_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__["View_FabricCanvasComponent_0"], _fabric_canvas_fabric_canvas_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__["RenderType_FabricCanvasComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](64, 4308992, [[2, 4], ["childCanvas", 4]], 0, _fabric_canvas_fabric_canvas_component__WEBPACK_IMPORTED_MODULE_20__["FabricCanvasComponent"], [_service_canvas_service__WEBPACK_IMPORTED_MODULE_21__["CanvasService"]], {
+      }), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](89, 0, null, 0, 2, "app-fabric-canvas", [], null, null, null, _fabric_canvas_fabric_canvas_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__["View_FabricCanvasComponent_0"], _fabric_canvas_fabric_canvas_component_ngfactory__WEBPACK_IMPORTED_MODULE_19__["RenderType_FabricCanvasComponent"])), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵdid"](90, 4308992, [[2, 4], ["childCanvas", 4]], 0, _fabric_canvas_fabric_canvas_component__WEBPACK_IMPORTED_MODULE_20__["FabricCanvasComponent"], [_service_canvas_service__WEBPACK_IMPORTED_MODULE_21__["CanvasService"]], {
         logo: [0, "logo"]
       }, null), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵpid"](131072, _angular_common__WEBPACK_IMPORTED_MODULE_22__["AsyncPipe"], [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"]])], function (_ck, _v) {
         var _co = _v.component;
@@ -3529,17 +3610,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _ck(_v, 54, 0, currVal_129);
 
-        var currVal_131 = "9";
+        _ck(_v, 58, 0);
 
-        _ck(_v, 58, 0, currVal_131);
+        var currVal_146 = 8;
+        var currVal_147 = 6;
 
-        var currVal_140 = "\u9884\u89C8\u56FE";
+        _ck(_v, 61, 0, currVal_146, currVal_147);
 
-        _ck(_v, 60, 0, currVal_140);
+        _ck(_v, 62, 0);
 
-        var currVal_141 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 64, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 65).transform(_co.logoUrl$));
+        _ck(_v, 66, 0);
 
-        _ck(_v, 64, 0, currVal_141);
+        var currVal_164 = "primary";
+
+        _ck(_v, 67, 0, currVal_164);
+
+        _ck(_v, 71, 0);
+
+        var currVal_181 = 8;
+        var currVal_182 = 6;
+
+        _ck(_v, 74, 0, currVal_181, currVal_182);
+
+        _ck(_v, 75, 0);
+
+        _ck(_v, 79, 0);
+
+        var currVal_199 = "primary";
+
+        _ck(_v, 80, 0, currVal_199);
+
+        var currVal_201 = "9";
+
+        _ck(_v, 84, 0, currVal_201);
+
+        var currVal_210 = "\u9884\u89C8\u56FE";
+
+        _ck(_v, 86, 0, currVal_210);
+
+        var currVal_211 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵunv"](_v, 90, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 91).transform(_co.logoUrl$));
+
+        _ck(_v, 90, 0, currVal_211);
       }, function (_ck, _v) {
         var currVal_0 = true;
         var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 4).nzAlign === "top";
@@ -3731,26 +3842,124 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _ck(_v, 51, 1, [currVal_113, currVal_114, currVal_115, currVal_116, currVal_117, currVal_118, currVal_119, currVal_120, currVal_121, currVal_122, currVal_123, currVal_124, currVal_125, currVal_126, currVal_127, currVal_128]);
 
-        var currVal_130 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).hostFlexStyle;
+        var currVal_130 = true;
+        var currVal_131 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzAlign === "top";
+        var currVal_132 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzAlign === "middle";
+        var currVal_133 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzAlign === "bottom";
+        var currVal_134 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzJustify === "start";
+        var currVal_135 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzJustify === "end";
+        var currVal_136 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzJustify === "center";
+        var currVal_137 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzJustify === "space-around";
+        var currVal_138 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 58).nzJustify === "space-between";
+        var currVal_139 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).status === "success";
+        var currVal_140 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).status === "warning";
+        var currVal_141 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).status === "error";
+        var currVal_142 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).status === "validating";
 
-        _ck(_v, 57, 0, currVal_130);
+        var currVal_143 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).hasFeedback && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).status;
 
-        var currVal_132 = true;
+        var currVal_144 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 59).withHelpClass;
 
-        var currVal_133 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).nzLoading;
+        _ck(_v, 57, 1, [currVal_130, currVal_131, currVal_132, currVal_133, currVal_134, currVal_135, currVal_136, currVal_137, currVal_138, currVal_139, currVal_140, currVal_141, currVal_142, currVal_143, currVal_144]);
 
-        var currVal_134 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).nzBordered;
+        var currVal_145 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 61).hostFlexStyle;
 
-        var currVal_135 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).nzHoverable;
+        _ck(_v, 60, 0, currVal_145);
 
-        var currVal_136 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).nzSize === "small";
+        var currVal_148 = true;
+        var currVal_149 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzType === "primary";
+        var currVal_150 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzType === "dashed";
+        var currVal_151 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzType === "link";
+        var currVal_152 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzType === "danger";
+        var currVal_153 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzShape === "circle";
+        var currVal_154 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzShape === "round";
+        var currVal_155 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzSize === "large";
+        var currVal_156 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzSize === "small";
 
-        var currVal_137 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).listOfNzCardGridDirective && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).listOfNzCardGridDirective.length;
+        var currVal_157 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzDanger;
 
-        var currVal_138 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).nzType === "inner";
-        var currVal_139 = !!_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 60).listOfNzCardTabComponent;
+        var currVal_158 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzLoading;
 
-        _ck(_v, 59, 0, currVal_132, currVal_133, currVal_134, currVal_135, currVal_136, currVal_137, currVal_138, currVal_139);
+        var currVal_159 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzGhost;
+
+        var currVal_160 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzBlock;
+
+        var currVal_161 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).nzSearch;
+
+        var currVal_162 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).disabled ? 0 - 1 : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).tabIndex === null ? null : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).tabIndex;
+        var currVal_163 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 67).disabled || null;
+
+        _ck(_v, 64, 1, [currVal_148, currVal_149, currVal_150, currVal_151, currVal_152, currVal_153, currVal_154, currVal_155, currVal_156, currVal_157, currVal_158, currVal_159, currVal_160, currVal_161, currVal_162, currVal_163]);
+
+        var currVal_165 = true;
+        var currVal_166 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzAlign === "top";
+        var currVal_167 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzAlign === "middle";
+        var currVal_168 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzAlign === "bottom";
+        var currVal_169 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzJustify === "start";
+        var currVal_170 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzJustify === "end";
+        var currVal_171 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzJustify === "center";
+        var currVal_172 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzJustify === "space-around";
+        var currVal_173 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 71).nzJustify === "space-between";
+        var currVal_174 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).status === "success";
+        var currVal_175 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).status === "warning";
+        var currVal_176 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).status === "error";
+        var currVal_177 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).status === "validating";
+
+        var currVal_178 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).hasFeedback && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).status;
+
+        var currVal_179 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 72).withHelpClass;
+
+        _ck(_v, 70, 1, [currVal_165, currVal_166, currVal_167, currVal_168, currVal_169, currVal_170, currVal_171, currVal_172, currVal_173, currVal_174, currVal_175, currVal_176, currVal_177, currVal_178, currVal_179]);
+
+        var currVal_180 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 74).hostFlexStyle;
+
+        _ck(_v, 73, 0, currVal_180);
+
+        var currVal_183 = true;
+        var currVal_184 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzType === "primary";
+        var currVal_185 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzType === "dashed";
+        var currVal_186 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzType === "link";
+        var currVal_187 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzType === "danger";
+        var currVal_188 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzShape === "circle";
+        var currVal_189 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzShape === "round";
+        var currVal_190 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzSize === "large";
+        var currVal_191 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzSize === "small";
+
+        var currVal_192 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzDanger;
+
+        var currVal_193 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzLoading;
+
+        var currVal_194 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzGhost;
+
+        var currVal_195 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzBlock;
+
+        var currVal_196 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).nzSearch;
+
+        var currVal_197 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).disabled ? 0 - 1 : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).tabIndex === null ? null : _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).tabIndex;
+        var currVal_198 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 80).disabled || null;
+
+        _ck(_v, 77, 1, [currVal_183, currVal_184, currVal_185, currVal_186, currVal_187, currVal_188, currVal_189, currVal_190, currVal_191, currVal_192, currVal_193, currVal_194, currVal_195, currVal_196, currVal_197, currVal_198]);
+
+        var currVal_200 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 84).hostFlexStyle;
+
+        _ck(_v, 83, 0, currVal_200);
+
+        var currVal_202 = true;
+
+        var currVal_203 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).nzLoading;
+
+        var currVal_204 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).nzBordered;
+
+        var currVal_205 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).nzHoverable;
+
+        var currVal_206 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).nzSize === "small";
+
+        var currVal_207 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).listOfNzCardGridDirective && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).listOfNzCardGridDirective.length;
+
+        var currVal_208 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).nzType === "inner";
+        var currVal_209 = !!_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 86).listOfNzCardTabComponent;
+
+        _ck(_v, 85, 0, currVal_202, currVal_203, currVal_204, currVal_205, currVal_206, currVal_207, currVal_208, currVal_209);
       });
     }
 
@@ -3854,6 +4063,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
             myReader.readAsDataURL(fileToUpload);
           }
+        }
+      }, {
+        key: "addTextItem",
+        value: function addTextItem() {
+          this.childCanvas.addObject();
+        }
+      }, {
+        key: "deleteSelection",
+        value: function deleteSelection() {
+          this.childCanvas.deleteSelections();
         }
       }, {
         key: "savePoster",
@@ -4049,7 +4268,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           marginLeft: 30,
           marginRight: 30,
           topicMarginTop: 440,
-          topicLineheight: 50
+          topicLineheight: 50,
+          maxWidth: 690
         };
         this.imageChange = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.dataUrl$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](null);
@@ -4116,11 +4336,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.cs.drawImage(this.context, realLogo, this.CANVAS_WIDTH - this.LOGO_SIZE - commonStyle.marginRight, commonStyle.marginRight, this.LOGO_SIZE, this.LOGO_SIZE, function () {
             _this5.updateDataUrl(_this5.canvas.toDataURL());
           });
+          var titleFontsize = 82;
+          this.context.font = "bold ".concat(titleFontsize, "px sans-serif");
+          var rawTitleWidth = this.context.measureText(title).width;
+
+          if (rawTitleWidth > commonStyle.maxWidth) {
+            titleFontsize = 82 / (rawTitleWidth / commonStyle.maxWidth);
+          }
+
           this.cs.fillText(this.context, title, commonStyle.marginLeft, 230, Object.assign(Object.assign({}, commonConfig), {
-            size: Math.min(580 / (title.length || 7), 82)
+            size: titleFontsize
           }));
-          this.cs.fillText(this.context, organization, commonStyle.marginLeft, 320, Object.assign(Object.assign({}, commonConfig), {
-            size: 50,
+          this.cs.fillText(this.context, organization, commonStyle.marginLeft, 238 + titleFontsize, Object.assign(Object.assign({}, commonConfig), {
+            size: Math.max(titleFontsize - 32, commonStyle.topicLineheight / 2),
             color: mainContentColor
           }));
 
