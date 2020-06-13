@@ -36,7 +36,15 @@ export class PosterInFabricComponent implements OnInit {
     }
   }
 
-  savePoster() {
+  addTextItem(): void {
+    this.childCanvas.addObject();
+  }
+
+  deleteSelection(): void {
+    this.childCanvas.deleteSelections();
+  }
+
+  savePoster(): void {
     const aLink = document.createElement('a');
     aLink.style.display = 'none';
     aLink.href = this.childCanvas.canvas.toDataURL();

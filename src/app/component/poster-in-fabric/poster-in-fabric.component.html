@@ -3,7 +3,7 @@
         <div nz-col nzSpan="15">
             <!-- form -->
             <nz-card nzTitle="海报配置">
-                <nz-form-item>右边的所有元素都是可以点击、拖拽、旋转、移动的</nz-form-item>
+                <nz-form-item>右边的所有元素都是可以点击、拖拽、旋转、移动和编辑内容的</nz-form-item>
                 <nz-form-item class="border-item">
                     <nz-form-label [nzSpan]="6" nzFor="poster-logo">LOGO</nz-form-label>
                     <nz-form-control [nzSpan]="8">
@@ -14,6 +14,20 @@
                     <nz-form-control [nzSpan]="8" [nzOffset]="6">
                         <button nz-button nzType="primary" (click)="addLogo()">
                             <i nz-icon nzType="upload"></i>添加 Logo
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="8" [nzOffset]="6">
+                        <button nz-button nzType="primary" (click)="deleteSelection()">
+                            删除选中元素
+                        </button>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control [nzSpan]="8" [nzOffset]="6">
+                        <button nz-button nzType="primary" (click)="addTextItem()">
+                            添加文字
                         </button>
                     </nz-form-control>
                 </nz-form-item>

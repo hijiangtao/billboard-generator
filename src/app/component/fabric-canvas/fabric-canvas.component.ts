@@ -41,8 +41,6 @@ export class FabricCanvasComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit(): void {
-    console.log(fabric.version);
-    console.log(this.canvasEle);
     this.canvas = new fabric.Canvas(this.canvasEle.nativeElement, {
       selection: true,
       backgroundColor: '#FF4C00',
@@ -53,15 +51,18 @@ export class FabricCanvasComponent implements OnInit, AfterViewInit {
 
     this.canvas.add(new fabric.IText('分享会主题', { fontSize: 70, left: 50, top: 50, fill: '#fff' }));
     this.canvas.add(new fabric.IText('XXX前端小组', { left: 50, top: 150, fill: '#fff' }));
+    this.canvas.add(
+      new fabric.IText('Vol.X / 第X期', { left: this.CANVAS_WIDTH - 120, top: 20, fill: '#fff', fontSize: 15 })
+    );
     this.canvas.add(new fabric.IText('- 分享环节1', { left: 50, top: 350, fill: '#fff', fontSize: 30 }));
     this.canvas.add(new fabric.IText('- 分享环节2', { left: 50, top: 400, fill: '#fff', fontSize: 30 }));
     this.canvas.add(new fabric.IText('- 分享环节3', { left: 50, top: 450, fill: '#fff', fontSize: 30 }));
-    this.canvas.add(new fabric.IText('- 分享环节3', { left: 50, top: 450, fill: '#fff', fontSize: 30 }));
+    this.canvas.add(new fabric.IText('- 分享环节4', { left: 50, top: 500, fill: '#fff', fontSize: 30 }));
 
     this.canvas.add(
       new fabric.Textbox(
         '这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述，这里是一段关于主题分享的简要介绍文字描述',
-        { left: 50, top: 550, fill: '#fff', fontSize: 20, width: 500, splitByGrapheme: true }
+        { left: 50, top: 580, fill: '#fff', fontSize: 20, width: this.CANVAS_WIDTH - 100, splitByGrapheme: true }
       )
     );
 
@@ -73,6 +74,30 @@ export class FabricCanvasComponent implements OnInit, AfterViewInit {
     );
 
     this.canvas.add(new fabric.Circle({ radius: 30, fill: '#288', top: 250, left: 50 }));
+  }
+
+  get selection(): fabric.Object {
+    return this.canvas.getActiveObject();
+  }
+
+  /**
+   * 删除选中元素
+   */
+  deleteSelections(): void {
+    this.canvas.remove(this.selection);
+  }
+
+  /**
+   * 添加元素
+   * Todo - 不同类型元素待支持
+   */
+  addObject() {
+    const ele = new fabric.IText('测试文案', {
+      left: Math.random() * (this.CANVAS_WIDTH - 30),
+      top: Math.random() * (this.CANVAS_HEIGHT - 30),
+      fill: '#fff',
+    });
+    this.canvas.add(ele);
   }
 
   updateCanvasLogo(val) {
