@@ -34,6 +34,7 @@ export class PureCanvasComponent implements OnInit, AfterViewInit {
     marginRight: 30,
     topicMarginTop: 440,
     topicLineheight: 50,
+    maxWidth: 690,
   };
 
   @Input()
@@ -104,14 +105,20 @@ export class PureCanvasComponent implements OnInit, AfterViewInit {
       }
     );
 
+    let titleFontsize = 82;
+    this.context.font = `bold ${titleFontsize}px sans-serif`;
+    const rawTitleWidth = this.context.measureText(title).width;
+    if (rawTitleWidth > commonStyle.maxWidth) {
+      titleFontsize = 82 / (rawTitleWidth / commonStyle.maxWidth);
+    }
     this.cs.fillText(this.context, title, commonStyle.marginLeft, 230, {
       ...commonConfig,
-      size: Math.min(580 / (title.length || 7), 82),
+      size: titleFontsize,
     });
 
-    this.cs.fillText(this.context, organization, commonStyle.marginLeft, 320, {
+    this.cs.fillText(this.context, organization, commonStyle.marginLeft, 238 + titleFontsize, {
       ...commonConfig,
-      size: 50,
+      size: Math.max(titleFontsize - 32, commonStyle.topicLineheight / 2),
       color: mainContentColor,
     });
 
