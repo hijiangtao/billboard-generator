@@ -8,9 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display logo text', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('billboard-generator app is running!');
+    expect(page.getTitleText()).toEqual('Billboard Generator');
   });
 
   afterEach(async () => {
