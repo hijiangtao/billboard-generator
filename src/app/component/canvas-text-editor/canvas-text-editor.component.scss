@@ -1,0 +1,11 @@
+canvas {
+  width: 100%;
+
+  border: 1px solid gray;
+}
+
+textarea {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
