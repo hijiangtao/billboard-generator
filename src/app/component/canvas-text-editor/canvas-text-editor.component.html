@@ -2,23 +2,26 @@
     <div class="inner-content" nz-row>
         <div nz-col nzSpan="24">
             <nz-card nzTitle="文本编辑器">
-                <canvas #textEditor width="2000px" height="900px"></canvas>
-                <textarea #textArea></textarea>
-
                 <div nz-row>
-                    <div nz-col nzSpan="8">
-                        <button nz-button nzType="primary" [disabled]="recordVideo$ | async"
-                            (click)="startRecording()">开始录制</button>
+                    <div nz-col nzSpan="20">
+                        <canvas #textEditor width="2000px" height="900px"></canvas>
+                        <textarea #textArea></textarea>
                     </div>
-                    <div nz-col nzSpan="8">
-                        <button nz-button nzType="primary" [disabled]="!(recordVideo$ | async)" nzDanger
-                            (click)="stopRecording()">停止录制</button>
-                    </div>
-                    <div nz-col nzSpan="8">
-                        <a [disabled]="!(videoUrl$ | async)" nz-button nzType="link" target="_blank"
-                            [href]="videoUrl$ | async">
-                            点击下载视频
-                        </a>
+                    <div class="toolbar" nz-col nzSpan="4">
+                        <div>
+                            <button nz-button nzType="primary" [disabled]="recordVideo$ | async"
+                                (click)="startRecording()">开始录制</button>
+                        </div>
+                        <div>
+                            <button nz-button nzType="primary" [disabled]="!(recordVideo$ | async)" nzDanger
+                                (click)="stopRecording()">停止录制</button>
+                        </div>
+
+                        <div>
+                            <a nz-button nzType="primary" target="_blank" [href]="videoUrl$ | async">
+                                下载视频
+                            </a>
+                        </div>
                     </div>
                 </div>
 
