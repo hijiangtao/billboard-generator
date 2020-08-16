@@ -7,13 +7,16 @@
 
                 <div nz-row>
                     <div nz-col nzSpan="8">
-                        <button nz-button nzType="primary" (click)="startRecording()">开始录制</button>
+                        <button nz-button nzType="primary" [disabled]="recordVideo$ | async"
+                            (click)="startRecording()">开始录制</button>
                     </div>
                     <div nz-col nzSpan="8">
-                        <button nz-button nzType="primary" (click)="stopRecording()">停止录制</button>
+                        <button nz-button nzType="primary" [disabled]="!(recordVideo$ | async)" nzDanger
+                            (click)="stopRecording()">停止录制</button>
                     </div>
                     <div nz-col nzSpan="8">
-                        <a nz-button nzType="primary" target="_blank" [href]="videoUrl">
+                        <a [disabled]="!(videoUrl$ | async)" nz-button nzType="link" target="_blank"
+                            [href]="videoUrl$ | async">
                             点击下载视频
                         </a>
                     </div>
