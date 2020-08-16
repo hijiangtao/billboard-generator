@@ -4,6 +4,22 @@
             <nz-card nzTitle="文本编辑器">
                 <canvas #textEditor width="2000px" height="900px"></canvas>
                 <textarea #textArea></textarea>
+
+                <div nz-row>
+                    <div nz-col nzSpan="8">
+                        <button nz-button nzType="primary" (click)="startRecording()">开始录制</button>
+                    </div>
+                    <div nz-col nzSpan="8">
+                        <button nz-button nzType="primary" (click)="stopRecording()">停止录制</button>
+                    </div>
+                    <div nz-col nzSpan="8">
+                        <a nz-button nzType="primary" target="_blank" [href]="videoUrl">
+                            点击下载视频
+                        </a>
+                    </div>
+                </div>
+
+
             </nz-card>
         </div>
     </div>

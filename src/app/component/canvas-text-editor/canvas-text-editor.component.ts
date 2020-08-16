@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
+declare const MediaRecorder: any;
 
 enum TextType {
   CHINESE,
@@ -24,6 +28,9 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
   @ViewChild('textArea')
   textArea: ElementRef;
 
+  @ViewChild('videoContainer')
+  videoContainer: ElementRef;
+
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
 
@@ -35,7 +42,14 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
   selected: any;
   localArr: any = [];
 
-  constructor() {}
+  videoUrl: SafeUrl;
+
+  raf: any;
+
+  // recordVideo$: ReplaySubject<boolean> = new ReplaySubject(1);
+  recorder: any;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {}
 
@@ -45,7 +59,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
 
     this.initTextEditor();
     this.initTextInputListener();
-    this.renderEditorContent();
+    this.renderEditorContent(true);
   }
 
   initTextEditor() {
@@ -96,7 +110,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
 
     this.cursorPos = [yLabel, xLabel];
 
-    this.renderEditorContent();
+    this.renderEditorContent(true);
   }
 
   updateTextList(data) {
@@ -129,7 +143,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
         this.updateTextList(e.data);
 
         this.textInputType = TextType.ENGLISH;
-        this.renderEditorContent();
+        this.renderEditorContent(true);
       },
       false
     );
@@ -140,7 +154,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
       (e) => {
         if (this.textInputType === TextType.CHINESE) {
           this.updateTextList(e.data);
-          this.renderEditorContent();
+          this.renderEditorContent(true);
           this.textInputType = TextType.ENGLISH;
         }
       },
@@ -153,7 +167,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
 
   onKeyUp() {
     this.isCommandKey = false;
-    this.renderEditorContent();
+    this.renderEditorContent(true);
   }
 
   onKeyDown(e) {
@@ -165,7 +179,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
       case 'a':
         if (this.isCommandKey === true) {
           this.selected = true;
-          this.renderEditorContent();
+          this.renderEditorContent(true);
         }
         break;
       case 'Backspace':
@@ -173,7 +187,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
           this.cursorPos = [0, 0];
           this.textList = [];
           this.selected = false;
-          this.renderEditorContent();
+          this.renderEditorContent(true);
         } else {
           for (let i = 0; i < this.textList.length; i++) {
             let str = '';
@@ -202,7 +216,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
                 }
               }
             }
-            this.renderEditorContent();
+            this.renderEditorContent(true);
           }
         }
         break;
@@ -216,7 +230,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
             this.cursorPos[1] = this.textList[this.cursorPos[0]].length;
           }
         }
-        this.renderEditorContent();
+        this.renderEditorContent(true);
         break;
       case 'ArrowLeft':
         this.cursorPos[1] -= 1;
@@ -229,7 +243,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
           }
         }
 
-        this.renderEditorContent();
+        this.renderEditorContent(true);
         break;
 
       case 'ArrowUp':
@@ -256,7 +270,7 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
         this.textList = arr;
         this.cursorPos[0]++;
         this.cursorPos[1] = 0;
-        this.renderEditorContent();
+        this.renderEditorContent(true);
         break;
     }
   }
@@ -282,8 +296,15 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
     }
   };
 
-  renderEditorContent() {
-    this.context.clearRect(0, 0, 2000, 900);
+  renderEditorContent(raf: boolean = false) {
+    // if (raf) {
+    //   window.cancelAnimationFrame?.(this.raf);
+    //   window.webkitCancelAnimationFrame?.(this.raf);
+    //   this.raf = this.renderEditorContent.bind(this);
+    // }
+
+    this.context.fillStyle = '#fff';
+    this.context.fillRect(0, 0, 2000, 900);
     this.context.font = `${OPTIONS.fontSize}px Arial`;
     this.context.fillStyle = '#000';
 
@@ -309,5 +330,32 @@ export class CanvasTextEditorComponent implements OnInit, AfterViewInit {
       // 开始绘制文字
       this.context.fillText(str, OPTIONS.x, OPTIONS.y + OPTIONS.lineHeight * (i + 1));
     }
+
+    // window.requestAnimationFrame(this.raf.bind(this));
+  }
+
+  startRecording() {
+    const stream = (this.canvas as any).captureStream();
+    this.recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+
+    const data = [];
+    this.recorder.ondataavailable = (event) => {
+      if (event.data && event.data.size) {
+        console.log(event.data);
+        data.push(event.data);
+      }
+    };
+
+    this.recorder.onstop = () => {
+      const url = URL.createObjectURL(new Blob(data, { type: 'video/webm' }));
+
+      this.videoUrl = this.sanitizer.bypassSecurityTrustUrl(url);
+    };
+
+    this.recorder.start();
+  }
+
+  stopRecording() {
+    this.recorder.stop();
   }
 }
