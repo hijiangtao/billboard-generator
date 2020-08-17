@@ -3,6 +3,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { PosterInCanvasComponent } from './component/poster-in-canvas/poster-in-canvas.component';
 import { PosterInFabricComponent } from './component/poster-in-fabric/poster-in-fabric.component';
 import { CanvasTextEditorComponent } from './component/canvas-text-editor/canvas-text-editor.component';
+import { CanvasVideoFilterComponent } from './component/canvas-video-filter/canvas-video-filter.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'canvas-text-editor',
     component: CanvasTextEditorComponent,
     data: { title: 'Canvas Text Editor' },
+  },
+  {
+    path: 'canvas-video-filter',
+    component: CanvasVideoFilterComponent,
+    data: { title: 'Video Filter' },
   },
 ];
 

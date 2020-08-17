@@ -1,0 +1,27 @@
+<ng-container>
+    <div class="inner-content" nz-row>
+        <div nz-col nzSpan="24">
+            <nz-card nzTitle="黑白电影">
+                <div nz-row>
+                    <div nz-col nzSpan="12">
+                        <canvas #canvasEle width="500px" height="280px"></canvas>
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <video src="/assets/marvel.video.mp4" controls="controls" width="500px" height="280px"
+                            #videoEle></video>
+                    </div>
+                    <div nz-col nzSpan="3">
+                        <button nz-button nzType="primary"
+                            (click)="toggleVideoStatusChange()">{{ !video || video.paused ? '播放' : '暂停'}}</button>
+                    </div>
+                    <div nz-col nzSpan="3">
+                        <button nz-button nzType="primary" [nzDanger]="isGray"
+                            (click)="toggleGrayStatusChange()">{{ isGray ? '恢复正常' : '灰度处理' }}</button>
+                    </div>
+                </div>
+
+
+            </nz-card>
+        </div>
+    </div>
+</ng-container>

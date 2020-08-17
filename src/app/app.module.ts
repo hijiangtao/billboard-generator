@@ -27,6 +27,7 @@ import { PosterInFabricComponent } from './component/poster-in-fabric/poster-in-
 import { FabricCanvasComponent } from './component/fabric-canvas/fabric-canvas.component';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { CanvasTextEditorComponent } from './component/canvas-text-editor/canvas-text-editor.component';
+import { CanvasVideoFilterComponent } from './component/canvas-video-filter/canvas-video-filter.component';
 
 registerLocaleData(zh);
 
@@ -38,6 +39,7 @@ registerLocaleData(zh);
     PosterInFabricComponent,
     FabricCanvasComponent,
     CanvasTextEditorComponent,
+    CanvasVideoFilterComponent,
   ],
   imports: [
     BrowserModule,
