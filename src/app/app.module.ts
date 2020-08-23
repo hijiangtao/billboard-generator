@@ -22,6 +22,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { PosterInFabricComponent } from './component/poster-in-fabric/poster-in-fabric.component';
 import { FabricCanvasComponent } from './component/fabric-canvas/fabric-canvas.component';
@@ -56,6 +57,7 @@ registerLocaleData(zh);
     NzFormModule,
     NzGridModule,
     NzLayoutModule,
+    NzAlertModule,
     NzTagModule,
     NzToolTipModule,
     NzUploadModule,
